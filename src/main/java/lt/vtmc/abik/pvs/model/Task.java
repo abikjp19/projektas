@@ -9,6 +9,8 @@ import javax.persistence.Id;
  * @author Bartas Beitas
  */
 
+//Kolkas tuscia klase, naudota norint implementuoti ArrayList Project klaseje. Normalus darbas prasides pasiekus FR3 punkta.
+
 @Entity
 public class Task {
 

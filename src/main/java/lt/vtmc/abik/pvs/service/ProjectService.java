@@ -51,6 +51,7 @@ public class ProjectService {
 	}
 	
 	public void updateProject(int id, Project newProject) {
+		//Paima senaji projekto id, ir ji priskiria gautiems projekto duomenimis, ir issaugo juos senojo projekto vietoje.
 		int oldId = this.findById(id).getId();
 		newProject.setId(oldId);
 		projectRepository.save(newProject);
