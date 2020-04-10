@@ -34,6 +34,11 @@ public class Project {
 	
 	protected Project() {};
 	
+	public Project(String title, String description) {
+		this.projectTitle = title;
+		this.projectDescription = description;
+	}
+	
 	//Getteriu ir Setteriu bloko pradzia.
 	public int getId() {
 		return id;
@@ -84,7 +89,14 @@ public class Project {
 	public void setFinished() {
 		this.isFinished = true;
 	}
-	
+
 	//Getteriu ir Setteriu bloko pabaiga.
+	
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", projectTitle=" + projectTitle + ", projectDescription=" + projectDescription
+				+ ", totalTasks=" + totalTasks + ", unfinishedTasks=" + unfinishedTasks + ", isFinished=" + isFinished
+				+ "]";
+	}
 	
 }
