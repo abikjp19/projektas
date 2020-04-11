@@ -21,8 +21,8 @@ return (
     <td></td>
       <td>Not Started</td>
       <td><a href="/tasks">20/20</a></td>
-      <td><button className="buttonEdit"><FaEdit /></button></td>
-      <td><button className="buttonDel"><FaTrashAlt /></button></td>
+      <td><button className="buttonEdit" ><FaEdit /></button></td>
+      <td><button className="buttonDel" ><FaTrashAlt /></button></td>
     </tr>
     </tbody>
     </table>
