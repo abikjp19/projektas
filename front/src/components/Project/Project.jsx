@@ -1,17 +1,32 @@
 import React from 'react';
 import Card from '../Card/Card';
 import './Project.css';
-import '../Card/Card';
+// import '../Card/Card';
 
-const Project = () =>{
+export default function Project (props){
+
+
+
 return(
 <div className='content'>
-<div>
-  <Card name="Project name 1" description="Description 1. Lorem ipsum Lorem ipsum Lorem ipsum "/>
-  <Card name="Project name 2" description="Description 2. Lorem ipsum Lorem ipsum Lorem ipsum "/>
-</div>
+ <ul>
+  
+    {props.projects.map((proj) => {
+      return(
+        <li key={proj.id}>
+      <Card 
+      name={proj.name}
+      description={proj.description}
+     deleteProject={props.deleteProject}
+            editProject={props.editProject}
+      />
+      </li>
+    )
+    })
+  }
+  
+  </ul>
 </div>
 );
 }
 
-export default Project;

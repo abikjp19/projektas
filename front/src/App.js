@@ -15,10 +15,11 @@ const App = () => {
     <div className='app-wraper'>
      <Header />
       <Navbar />
+      <CtreateProjectForm />
      <div className='app-wraper-content'>
-       <Route path='/form' component={CtreateProjectForm} />
+       {/* <Route path='/form' component={CtreateProjectForm} />
        <Route path='/tasks' component={Task} />
-       <Route path='/projects' component={Project} />
+       <Route path='/projects' component={Project} /> */}
       </div>
    </div>
    </BrowserRouter>
