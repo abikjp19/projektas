@@ -1,35 +1,44 @@
 package lt.vtmc.abik.pvs.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Bartas Beitas
  */
 
 @Entity
+//@Table(name="PROJECT")
 public class Project {
 
 	/*
 	 * Dar padaryti:
-	 * toString() metoda,
 	 * setUnfinishedTasks logika.
 	 * Implementuoti listOfTasks.
 	 */
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(nullable=false)
 	private String projectTitle;
+	
+	@Column(nullable=false)
 	private String projectDescription;
+	
+	@Column(nullable=false)
 	private int totalTasks;
+	
+	@Column(nullable=false)
 	private int unfinishedTasks;
-	private boolean isFinished = false;
+	
+	@Column(nullable=false)
+	private boolean isFinished;
 //	private List<Task> listOfTasks = new ArrayList<Task>();
 	
 	protected Project() {};
