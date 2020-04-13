@@ -7,24 +7,7 @@ class Form extends Component {
     super(props);
     this.state = {
       projects: [
-        // {
-        //   projectTitle: "Pirmas projektas",
-        //   projectDescription: "Pirmo projekto aprašymas: sukurti programą projektų ir jų užduočių valdymui.",
-        //   id: Date.now(),
-        //   isFinished: "New",
-        //   totalTasks: 0,
-        //   unfinishedTasks: 0,
-        // },
-        // {
-        //     projectTitle: "Antras projektas",
-        //     projectDescription: "Antro projekto aprašymas: sukurti programą el parduotuvei.",
-        //     id: Date.now()+1,
-        //     isFinished: "New",
-        //     totalTasks: 0,
-        //     unfinishedTasks: 0,
-        // },
       ],
-      //id: 1,
       projectTitle: "",
       projectDescription: "",
       finished: "New",
@@ -54,17 +37,7 @@ class Form extends Component {
     e.preventDefault();
   
     if (this.state.btn === "Submit") {
-      // const data = [
-      //   ...this.state.projects,
-      //   {
-      //     id: Date.now(),
-      //     projectTitle: this.state.projectTitle,
-      //     projectDescription: this.state.projectDescription,
-      //     finished: false,
-      //     totalTasks: 10,
-      //     unfinishedTasks: 10,
-      //   },
-      // ];
+    
       const newProject = {
         projectTitle: this.state.projectTitle,
         projectDescription: this.state.projectDescription,
@@ -76,9 +49,7 @@ class Form extends Component {
         ...this.state.projects,
         newProject,
       ];
-      // console.log(project);
-      // console.log(project.projectTitle);
-      // console.log(project.projectDescription);
+      
       axios.post(`http://localhost:8080/api/project/`, newProject , {headers: {
         "Content-Type": "application/json"}
       })
