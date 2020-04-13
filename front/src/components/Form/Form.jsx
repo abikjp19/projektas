@@ -26,11 +26,11 @@ class Form extends Component {
       ],
       projectTitle: "",
       projectDescription: "",
-      isFinished: "New",
+      finished: "New",
       totalTasks: 0,
       unfinishedTasks: 0,
       btn: "Submit",
-      updateId: "",
+      updateId: ""
     };
   }
 
@@ -38,7 +38,7 @@ class Form extends Component {
     axios.get(`http://localhost:8080/api/project/`)
       .then(res => {
         const project = res.data;
-        this.setState({project});
+        this.setState({projects: project});
       })
   }
 
@@ -50,13 +50,7 @@ class Form extends Component {
 
   submitForm = (e) => {
     e.preventDefault();
-    
-    axios.delete(`http://localhost:8080/api/project/id/${this.state.id}`)
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-    });
-
+  
     if (this.state.btn === "Submit") {
       const data = [
         ...this.state.projects,
@@ -64,11 +58,18 @@ class Form extends Component {
           id: Date.now(),
           projectTitle: this.state.projectTitle,
           projectDescription: this.state.projectDescription,
-          isFinished: "New",
-          totalTasks: 0,
-          unfinishedTasks: 0,
+          finished: "New",
+          totalTasks: 10,
+          unfinishedTasks: 10,
         },
       ];
+
+      axios.post(`http://localhost:8080/api/project/`, {data})
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+       })
+
       console.log(data);
       this.setState({
         projects: data,
@@ -76,11 +77,7 @@ class Form extends Component {
         projectDescription: "",
       });
 
-      axios.post(`https://localhost:8080/api/project/`, {data})
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      })
+      
 
     } else {
       const data = [...this.state.projects];
@@ -103,8 +100,17 @@ class Form extends Component {
 
   deleteProject = (id) => {
     const data = this.state.projects.filter((proj) => proj.id !== id);
+   
+
     this.setState({
       projects: data,
+    });
+
+     
+    axios.delete(`http://localhost:8080/api/project/id/${this.state.id}`)
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
     });
   };
 
