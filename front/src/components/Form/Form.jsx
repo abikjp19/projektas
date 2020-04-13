@@ -94,9 +94,6 @@ class Form extends Component {
         projectTitle: "",
         projectDescription: "",
       });
-
-      
-
     }
      else {
       const data = [...this.state.projects];
@@ -108,6 +105,16 @@ class Form extends Component {
         projectTitle: this.state.projectTitle,
         projectDescription: this.state.projectDescription,
       };
+
+      axios.put(`http://localhost:8080/api/project/id/${this.state.updateId}`, data[index], {headers: {
+        "Content-Type": "application/json"}
+      })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        axios.get(`http://localhost:8080/api/project/`);
+       });
+
       this.setState({
         projects: data,
         btn: "Submit",
