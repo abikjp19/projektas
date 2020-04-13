@@ -10,7 +10,7 @@ class Form extends Component {
       ],
       projectTitle: "",
       projectDescription: "",
-      finished: "New",
+      finished: false ? "Done" : "New",
       totalTasks: 0,
       unfinishedTasks: 0,
       btn: "Submit",
@@ -22,7 +22,7 @@ class Form extends Component {
     axios.get(`http://localhost:8080/api/project/`)
       .then(res => {
         const project = res.data;
-        this.setState({projects: project});
+        this.setState({projects: project, finished: false ? "Done" : "New"});
         console.log(this.state.projects);
       })
   }
@@ -41,9 +41,9 @@ class Form extends Component {
       const newProject = {
         projectTitle: this.state.projectTitle,
         projectDescription: this.state.projectDescription,
-        totalTasks: 10,
-        unfinishedTasks: 10,
-        finished: false,
+        totalTasks: 0,
+        unfinishedTasks: 0,
+       
       };
       const data = [
         ...this.state.projects,
@@ -158,13 +158,13 @@ class Form extends Component {
           </div>
 
           <div className="col-8 mt-2">
-            {this.state.projects.length > 0 && (
+            
               <List
                 projects={this.state.projects}
                 deleteProject={this.deleteProject}
                 editProject={this.editProject}
               />
-            )}
+            
           </div>
         </div>
       </div>
