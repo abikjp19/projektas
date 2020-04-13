@@ -31,10 +31,10 @@ public class Project {
 	@Column(nullable=false)
 	private String projectDescription;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private int totalTasks;
 	
-	@Column(nullable=false)
+	@Column(nullable=true)
 	private int unfinishedTasks;
 	
 	@Column(nullable=false)
@@ -101,11 +101,11 @@ public class Project {
 
 	//Getteriu ir Setteriu bloko pabaiga.
 	
-	@Override
-	public String toString() {
-		return "Project [id=" + id + ", projectTitle=" + projectTitle + ", projectDescription=" + projectDescription
-				+ ", totalTasks=" + totalTasks + ", unfinishedTasks=" + unfinishedTasks + ", isFinished=" + isFinished
-				+ "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Project [id=" + id + ", projectTitle=" + projectTitle + ", projectDescription=" + projectDescription
+//				+ ", totalTasks=" + totalTasks + ", unfinishedTasks=" + unfinishedTasks + ", isFinished=" + isFinished
+//				+ "]";
+//	}
 	
 }

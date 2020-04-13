@@ -1,5 +1,7 @@
 import React from 'react';
 import './Card.css';
+import {FaTrashAlt} from 'react-icons/fa';
+import {FaEdit} from 'react-icons/fa';
 
 const Card = (props) => {
 return (
@@ -19,8 +21,8 @@ return (
     <td></td>
       <td>Not Started</td>
       <td><a href="/tasks">20/20</a></td>
-      <td><button className="buttonEdit">Edit</button></td>
-      <td><button className="buttonDel">Delete</button></td>
+      <td><button className="buttonEdit" ><FaEdit /></button></td>
+      <td><button className="buttonDel" ><FaTrashAlt /></button></td>
     </tr>
     </tbody>
     </table>
