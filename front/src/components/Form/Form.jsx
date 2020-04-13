@@ -24,6 +24,7 @@ class Form extends Component {
         //     unfinishedTasks: 0,
         // },
       ],
+      //id: 1,
       projectTitle: "",
       projectDescription: "",
       finished: "New",
@@ -39,6 +40,7 @@ class Form extends Component {
       .then(res => {
         const project = res.data;
         this.setState({projects: project});
+        console.log(this.state.projects);
       })
   }
 
@@ -52,23 +54,39 @@ class Form extends Component {
     e.preventDefault();
   
     if (this.state.btn === "Submit") {
+      // const data = [
+      //   ...this.state.projects,
+      //   {
+      //     id: Date.now(),
+      //     projectTitle: this.state.projectTitle,
+      //     projectDescription: this.state.projectDescription,
+      //     finished: false,
+      //     totalTasks: 10,
+      //     unfinishedTasks: 10,
+      //   },
+      // ];
+      const newProject = {
+        projectTitle: this.state.projectTitle,
+        projectDescription: this.state.projectDescription,
+        totalTasks: 10,
+        unfinishedTasks: 10,
+        finished: false,
+      };
       const data = [
         ...this.state.projects,
-        {
-          id: Date.now(),
-          projectTitle: this.state.projectTitle,
-          projectDescription: this.state.projectDescription,
-          finished: "New",
-          totalTasks: 10,
-          unfinishedTasks: 10,
-        },
+        newProject,
       ];
-
-      axios.post(`http://localhost:8080/api/project/`, {data})
+      // console.log(project);
+      // console.log(project.projectTitle);
+      // console.log(project.projectDescription);
+      axios.post(`http://localhost:8080/api/project/`, newProject , {headers: {
+        "Content-Type": "application/json"}
+      })
       .then(res => {
         console.log(res);
         console.log(res.data);
-       })
+        axios.get(`http://localhost:8080/api/project/`);
+       });
 
       console.log(data);
       this.setState({
@@ -79,7 +97,8 @@ class Form extends Component {
 
       
 
-    } else {
+    }
+     else {
       const data = [...this.state.projects];
       const index = this.state.projects.findIndex(
         (proj) => proj.id === this.state.updateId
@@ -101,13 +120,11 @@ class Form extends Component {
   deleteProject = (id) => {
     const data = this.state.projects.filter((proj) => proj.id !== id);
    
-
     this.setState({
       projects: data,
     });
 
-     
-    axios.delete(`http://localhost:8080/api/project/id/${this.state.id}`)
+    axios.delete(`http://localhost:8080/api/project/id/${id}`)
     .then(res => {
       console.log(res);
       console.log(res.data);
