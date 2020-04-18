@@ -26,7 +26,6 @@ public class BackApplication {
 			repo.save(new Project("project1", "Cha cha cha"));
 //			repo.findById(1).setTotalTasks(22);
 //			repo.findById(1).setUnfinishedTasks(21);
-			repo.findById(1).setProjectTitle("Test");
 			repo.save(new Project("project2", "Chi chi chi"));
 //			repo.findById(2).setTotalTasks(10);
 //			repo.findById(2).setUnfinishedTasks(0);
