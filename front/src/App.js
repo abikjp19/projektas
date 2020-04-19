@@ -1,22 +1,29 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
-import Form from './components/Form/Form';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Header from './components/Header.js';
+import ProjectTasks from './components/ProjectTasks.js';
+import ProjectsList from './components/ProjectsList.js';
+import ProjectForm from './components/ProjectForm.js';
 
-
-
-
-// app yra komponente(t.y. f-ja, kuri grazina JSX zyme)
-const App = () => {
+function App() {
   return (
     
-    <div className='app-wraper'>
-     <Header />
-      <Navbar />
-      <Form />
-   </div>
-  
+      <div>
+            <Header/>
+            <Router >
+               
+                <Switch>
+                    <Route path="/" exact component={ProjectsList} />
+                    <Route path="/projects" exact component={ProjectsList} />
+                    <Route path="/projects/:id" exact component={ProjectForm} />
+                    {/* <Route path="/projects/:id/tasks" exact component={ProjectTasks} /> */}
+                </Switch>
+                
+            </Router>
+            </div>
+   
   );
 }
 
