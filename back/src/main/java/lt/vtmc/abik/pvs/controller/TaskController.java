@@ -1,4 +1,4 @@
-package lt.vtmc.abik.pvs.service;
+package lt.vtmc.abik.pvs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import lt.vtmc.abik.pvs.model.Task;
+import lt.vtmc.abik.pvs.service.TaskService;
 
 /**
  * @author Bartas Beitas
