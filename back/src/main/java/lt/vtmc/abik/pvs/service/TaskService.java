@@ -1,6 +1,7 @@
 package lt.vtmc.abik.pvs.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,13 +35,13 @@ public class TaskService {
 		return taskRepository.findByTaskId(id);
 	}
 	
-	public Iterable<Task> getAll(){
-		return taskRepository.findAll();
+	public Iterable<Task> getAll(int projectId){
+		return taskRepository.findAll().stream().filter(task -> task.getProject().getId() == projectId).collect(Collectors.toList());
 	}
 	
 	public void add(Task task, int projectId) {
-		taskRepository.save(task);
 		projectRepository.findByProjectId(projectId).addTask(task);
+		taskRepository.save(task);
 		System.out.println("Task added.");
 	}
 	

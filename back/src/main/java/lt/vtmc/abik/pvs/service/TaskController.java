@@ -32,7 +32,7 @@ public class TaskController {
 	
 	@GetMapping
 	public Iterable<Task> getAll(@PathVariable int projectId){
-		return taskService.getAll();
+		return taskService.getAll(projectId);
 	}
 	
 	@PostMapping

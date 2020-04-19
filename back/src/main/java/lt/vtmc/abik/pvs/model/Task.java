@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,13 +17,15 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Bartas Beitas
  */
 
 @Entity
 public class Task {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int taskId;
@@ -49,8 +52,9 @@ public class Task {
 	@Column
 	private LocalDateTime modTime;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="project_id")
+	@ManyToOne(fetch=FetchType.LAZY, optional = false)
+	@JoinColumn(name="project_id", nullable = false)
+	@JsonIgnore
 	private Project project;
 	
 	protected Task() {};

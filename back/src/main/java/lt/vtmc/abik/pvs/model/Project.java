@@ -3,13 +3,17 @@ package lt.vtmc.abik.pvs.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author Bartas Beitas
@@ -23,6 +27,7 @@ public class Project {
 	 * Dar padaryti:
 	 * setUnfinishedTasks logika.
 	 * Implementuoti listOfTasks.
+	 * removeTask.
 	 */
 	
 	@Id
@@ -44,9 +49,15 @@ public class Project {
 	@Column(nullable=false)
 	private boolean isFinished;
 	
-	//@OneToMany(mappedBy="project", orphanRemoval=true)
-	@OneToMany
+	@OneToMany(
+			mappedBy="project",
+			orphanRemoval=true,
+			cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER
+	)
+	//@OneToMany
 	@ElementCollection
+	@JsonIgnore
 	private Set<Task> listOfTasks = new HashSet<Task>();
 	
 	protected Project() {};
