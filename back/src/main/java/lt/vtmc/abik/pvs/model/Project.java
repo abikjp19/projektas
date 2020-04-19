@@ -1,10 +1,10 @@
 package lt.vtmc.abik.pvs.model;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,7 +44,9 @@ public class Project {
 	@Column(nullable=false)
 	private boolean isFinished;
 	
-	@OneToMany(orphanRemoval=true)
+	//@OneToMany(mappedBy="project", orphanRemoval=true)
+	@OneToMany
+	@ElementCollection
 	private Set<Task> listOfTasks = new HashSet<Task>();
 	
 	protected Project() {};

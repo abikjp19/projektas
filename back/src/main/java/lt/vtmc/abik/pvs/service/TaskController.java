@@ -25,28 +25,28 @@ public class TaskController {
 	@Autowired
 	TaskService taskService;
 	
-	@GetMapping("id/{id}")
-	public Task findByTaskId(@PathVariable int id) {
-		return taskService.findByTaskId(id);
+	@GetMapping("{id}")
+	public Task findByTaskId(@PathVariable int projectId, @PathVariable int taskId) {
+		return taskService.findByTaskId(taskId);
 	}
 	
 	@GetMapping
-	public Iterable<Task> getAll(){
+	public Iterable<Task> getAll(@PathVariable int projectId){
 		return taskService.getAll();
 	}
 	
 	@PostMapping
-	public void add(@RequestBody Task task) {
-		taskService.add(task);
+	public void add(@RequestBody Task task, @PathVariable int projectId) {
+		taskService.add(task, projectId);
 	}
 	
-	@DeleteMapping("id/{id}")
-	public void deleteByTaskId(@PathVariable int id) {
-		taskService.deleteByTaskId(id);
+	@DeleteMapping("{taskId}")
+	public void deleteByTaskId(@PathVariable int projectId, @PathVariable int taskId) {
+		taskService.deleteByTaskId(taskId);
 	}
 	
-	@PutMapping("id/{id}")
-	public void updateTask(@RequestBody Task newTask, @PathVariable int id) {
-		taskService.updateTask(id, newTask);
+	@PutMapping("{taskId}")
+	public void updateTask(@RequestBody Task newTask, @PathVariable int projectId, @PathVariable int taskId) {
+		taskService.updateTask(taskId, newTask);
 	}
 }

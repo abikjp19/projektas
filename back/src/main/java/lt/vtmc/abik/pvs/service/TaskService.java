@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lt.vtmc.abik.pvs.model.Task;
+import lt.vtmc.abik.pvs.repository.ProjectRepository;
 import lt.vtmc.abik.pvs.repository.TaskRepository;
 
 /**
@@ -16,11 +17,13 @@ import lt.vtmc.abik.pvs.repository.TaskRepository;
 public class TaskService {
 
 	TaskRepository taskRepository;
+	ProjectRepository projectRepository;
 	
 	@Autowired
-	public TaskService(TaskRepository repo) {
+	public TaskService(TaskRepository repo, ProjectRepository repo2) {
 		super();
 		this.taskRepository = repo;
+		this.projectRepository = repo2;
 	}
 	
 	public List<Task> fintByTaskTitle(String taskTitle){
@@ -35,8 +38,9 @@ public class TaskService {
 		return taskRepository.findAll();
 	}
 	
-	public void add(Task task) {
+	public void add(Task task, int projectId) {
 		taskRepository.save(task);
+		projectRepository.findByProjectId(projectId).addTask(task);
 		System.out.println("Task added.");
 	}
 	
@@ -53,7 +57,6 @@ public class TaskService {
 	public void updateTask(int id, Task newTask) {
 		int oldId = this.findByTaskId(id).getId();
 		newTask.setId(oldId);
-//		newTask.setModTime(LocalDateTime.now());
 		taskRepository.save(newTask);
 	}
 }

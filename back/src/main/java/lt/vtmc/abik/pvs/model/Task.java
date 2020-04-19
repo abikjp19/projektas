@@ -1,8 +1,8 @@
 package lt.vtmc.abik.pvs.model;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -35,13 +35,13 @@ public class Task {
 	
 	@Enumerated(EnumType.STRING)
 	//@Column(nullable=false)
-	private TaskPriority taskPriority;
+	private TaskPriority taskPriority = TaskPriority.LOW;
 	
 	@Enumerated(EnumType.STRING)
 	//@Column(nullable=false)
-	private TaskStatus taskStatus;
+	private TaskStatus taskStatus = TaskStatus.NOT_STARTED;
 	
-	@Column(updatable = false, insertable = false)
+	@Column(updatable = false)
 	@CreationTimestamp
 	private LocalDateTime createTime;
 	
@@ -49,8 +49,8 @@ public class Task {
 	@Column
 	private LocalDateTime modTime;
 	
-	@ManyToOne
-	@JoinColumn(name = "project_id")
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="project_id")
 	private Project project;
 	
 	protected Task() {};
@@ -58,10 +58,8 @@ public class Task {
 	public Task(String title, String description) {
 		this.taskTitle = title;
 		this.taskDescription = description;
-//		this.createTime = LocalDateTime.now();
-//		this.modTime = this.createTime;
-		this.taskStatus = taskStatus.NOT_STARTED;
-		this.taskPriority = taskPriority.LOW;
+		//this.taskStatus = TaskStatus.NOT_STARTED;
+		//this.taskPriority = TaskPriority.LOW;
 	}
 
 	public int getId() {
