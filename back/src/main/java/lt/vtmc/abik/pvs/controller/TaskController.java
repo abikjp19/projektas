@@ -1,5 +1,7 @@
 package lt.vtmc.abik.pvs.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,34 +21,39 @@ import lt.vtmc.abik.pvs.service.TaskService;
  */
 
 @RestController
-@RequestMapping("api/project/{projectId}/")
+@RequestMapping("api/project/id/{projectId}/task/")
 @CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
 
 	@Autowired
 	TaskService taskService;
 	
-	@GetMapping("{id}")
+	@GetMapping("id/{taskId}")
 	public Task findByTaskId(@PathVariable int projectId, @PathVariable int taskId) {
 		return taskService.findByTaskId(taskId);
 	}
 	
+	@GetMapping("title/{taskTitle}")
+	public List<Task> findByTaskTitle(@PathVariable int projectId, @PathVariable String taskTitle){
+		return taskService.findByTaskTitle(taskTitle);
+	}
+	
 	@GetMapping
-	public Iterable<Task> getAll(@PathVariable int projectId){
+	public Iterable<Task> getAllTasks(@PathVariable int projectId){
 		return taskService.getAll(projectId);
 	}
 	
 	@PostMapping
-	public void add(@RequestBody Task task, @PathVariable int projectId) {
+	public void addTask(@RequestBody Task task, @PathVariable int projectId) {
 		taskService.add(task, projectId);
 	}
 	
-	@DeleteMapping("{taskId}")
+	@DeleteMapping("id/{taskId}")
 	public void deleteByTaskId(@PathVariable int projectId, @PathVariable int taskId) {
-		taskService.deleteByTaskId(taskId);
+		taskService.deleteByTaskId(taskId, projectId);
 	}
 	
-	@PutMapping("{taskId}")
+	@PutMapping("id/{taskId}")
 	public void updateTask(@RequestBody Task newTask, @PathVariable int projectId, @PathVariable int taskId) {
 		taskService.updateTask(taskId, newTask);
 	}

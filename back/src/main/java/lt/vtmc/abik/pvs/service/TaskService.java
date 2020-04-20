@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lt.vtmc.abik.pvs.model.Project;
 import lt.vtmc.abik.pvs.model.Task;
 import lt.vtmc.abik.pvs.repository.ProjectRepository;
 import lt.vtmc.abik.pvs.repository.TaskRepository;
@@ -27,7 +28,7 @@ public class TaskService {
 		this.projectRepository = repo2;
 	}
 	
-	public List<Task> fintByTaskTitle(String taskTitle){
+	public List<Task> findByTaskTitle(String taskTitle){
 		return taskRepository.findByTaskTitle(taskTitle);
 	}
 	
@@ -45,9 +46,10 @@ public class TaskService {
 		System.out.println("Task added.");
 	}
 	
-	public void deleteByTaskId(int id) {
-		taskRepository.deleteById(id);
-		System.out.println("Task with the id of '" + id + "' was deleted.");
+	public void deleteByTaskId(int taskId, int projectId) {
+		projectRepository.findByProjectId(projectId).removeTask(taskRepository.findByTaskId(taskId));
+		taskRepository.deleteById(taskId);
+		System.out.println("Task with the id of '" + taskId + "' was deleted.");
 	}
 	
 	public void deleteByTaskTitle(String taskTitle) {
@@ -56,8 +58,11 @@ public class TaskService {
 	}
 	
 	public void updateTask(int id, Task newTask) {
-		int oldId = this.findByTaskId(id).getId();
-		newTask.setId(oldId);
-		taskRepository.save(newTask);
+		Task oldTask = this.findByTaskId(id);
+		oldTask.setTaskDescription(newTask.getTaskDescription());
+		oldTask.setTaskPriority(newTask.getTaskPriority());
+		oldTask.setTaskStatus(newTask.getTaskStatus());
+		oldTask.setTaskTitle(newTask.getTaskTitle());
+		taskRepository.save(oldTask);
 	}
 }

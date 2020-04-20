@@ -128,4 +128,9 @@ public class Project {
 		this.listOfTasks.add(task);
 		task.setProject(this);
 	}
+	
+	public void removeTask(Task task) {
+		this.listOfTasks.remove(task);
+		task.setProject(null);
+	}
 }
