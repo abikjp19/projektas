@@ -8,7 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import lt.vtmc.abik.pvs.model.Project;
+import lt.vtmc.abik.pvs.model.Task;
 import lt.vtmc.abik.pvs.repository.ProjectRepository;
+import lt.vtmc.abik.pvs.repository.TaskRepository;
 
 @SpringBootApplication
 public class BackApplication {
@@ -20,19 +22,25 @@ public class BackApplication {
 	private static final Logger log = LoggerFactory.getLogger(BackApplication.class);
 	
 	@Bean
-	public CommandLineRunner example(ProjectRepository repo) {
+	public CommandLineRunner example(ProjectRepository repo, TaskRepository repo2) {
 		return (args) -> {
 			//repo.deleteAll();
-			repo.save(new Project("project1", "Cha cha cha"));
-//			repo.findById(1).setTotalTasks(22);
-//			repo.findById(1).setUnfinishedTasks(21);
-			repo.save(new Project("project2", "Chi chi chi"));
-//			repo.findById(2).setTotalTasks(10);
-//			repo.findById(2).setUnfinishedTasks(0);
-//			repo.findById(2).setFinished();
-			repo.save(new Project("project3", "Cho cho cho"));
-//			repo.findById(3).setTotalTasks(15);
-//			repo.findById(3).setUnfinishedTasks(8);
+			Project proj1 = new Project("project1", "Cha cha cha"); 
+			Project proj2 = new Project("project2", "Chi chi chi");
+			Project proj3 = new Project("project3", "Cho cho cho");
+			repo.save(proj1);
+			repo.save(proj2);
+			repo.save(proj3);
+			
+			Task task1 = new Task("task1", "Cha chi cho");
+			Task task2 = new Task("task2", "Cho cha chi");
+			Task task3 = new Task("task3", "Chi cho cha");
+			proj1.addTask(task1);
+			proj1.addTask(task2);
+			proj2.addTask(task3);
+			repo2.save(task1);
+			repo2.save(task2);
+			repo2.save(task3);
 		};
 	}
 }
