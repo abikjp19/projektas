@@ -1,11 +1,19 @@
 package lt.vtmc.abik.pvs.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author Bartas Beitas
@@ -19,11 +27,12 @@ public class Project {
 	 * Dar padaryti:
 	 * setUnfinishedTasks logika.
 	 * Implementuoti listOfTasks.
+	 * removeTask.
 	 */
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private int projectId;
 	
 	@Column(nullable=false)
 	private String projectTitle;
@@ -39,7 +48,17 @@ public class Project {
 	
 	@Column(nullable=false)
 	private boolean isFinished;
-//	private List<Task> listOfTasks = new ArrayList<Task>();
+	
+	@OneToMany(
+			mappedBy="project",
+			orphanRemoval=true,
+			cascade=CascadeType.ALL,
+			fetch=FetchType.EAGER
+	)
+	//@OneToMany
+	@ElementCollection
+	@JsonIgnore
+	private Set<Task> listOfTasks = new HashSet<Task>();
 	
 	protected Project() {};
 	
@@ -50,11 +69,11 @@ public class Project {
 	
 	//Getteriu ir Setteriu bloko pradzia.
 	public int getId() {
-		return id;
+		return projectId;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.projectId = id;
 	}
 
 	public String getProjectTitle() {
@@ -99,13 +118,19 @@ public class Project {
 		this.isFinished = true;
 	}
 
+	public Set<Task> getListOfTasks() {
+		return listOfTasks;
+	}
+
 	//Getteriu ir Setteriu bloko pabaiga.
 	
-//	@Override
-//	public String toString() {
-//		return "Project [id=" + id + ", projectTitle=" + projectTitle + ", projectDescription=" + projectDescription
-//				+ ", totalTasks=" + totalTasks + ", unfinishedTasks=" + unfinishedTasks + ", isFinished=" + isFinished
-//				+ "]";
-//	}
+	public void addTask(Task task) {
+		this.listOfTasks.add(task);
+		task.setProject(this);
+	}
 	
+	public void removeTask(Task task) {
+		this.listOfTasks.remove(task);
+		task.setProject(null);
+	}
 }

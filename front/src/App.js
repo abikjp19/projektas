@@ -1,27 +1,27 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {Route, Switch } from "react-router-dom";
 import Header from './components/Header.js';
-import ProjectTasks from './components/ProjectTasks.js';
+import TasksList from './components/TasksList.js'
 import ProjectsList from './components/ProjectsList.js';
 import ProjectForm from './components/ProjectForm.js';
+import TaskForm from './components/TaskForm.js';
+import Error from './components/Error.js';
 
 function App() {
   return (
     
       <div>
             <Header/>
-            <Router >
-               
                 <Switch>
                     <Route path="/" exact component={ProjectsList} />
                     <Route path="/projects" exact component={ProjectsList} />
                     <Route path="/projects/:id" exact component={ProjectForm} />
-                    {/* <Route path="/projects/:id/tasks" exact component={ProjectTasks} /> */}
+                    <Route path="/projects/:id/tasks" exact component={TasksList} />
+                    <Route path="/projects/id/:id/tasks/id/:id" exact component={TaskForm} /> 
+                    <Route component={Error}/>
                 </Switch>
-                
-            </Router>
             </div>
    
   );

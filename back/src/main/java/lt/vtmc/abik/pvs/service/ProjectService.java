@@ -27,8 +27,8 @@ public class ProjectService {
 		return projectRepository.findByProjectTitle(projectTitle);
 	}
 	
-	public Project findById(int id) {
-		return projectRepository.findById(id);
+	public Project findByProjectId(int id) {
+		return projectRepository.findByProjectId(id);
 	}
 	
 	public Iterable<Project> getAll(){
@@ -40,7 +40,7 @@ public class ProjectService {
 		System.out.println("Project added.");
 	}
 	
-	public void deleteById(int id) {
+	public void deleteByProjectId(int id) {
 		projectRepository.deleteById(id);
 		System.out.println("Project with the id of '" + id + "' was removed.");
 	}
@@ -51,7 +51,7 @@ public class ProjectService {
 	}
 	
 	public void updateProject(int id, Project newProject) {
-		int oldId = this.findById(id).getId();
+		int oldId = this.findByProjectId(id).getId();
 		newProject.setId(oldId);
 		projectRepository.save(newProject);
 	}
