@@ -59,13 +59,13 @@ deleteByTaskId(projectId, taskId){
      })
 }
 
-updateTask(projectId, taskId, task) {
+updateTask(task, projectId, taskId ) {
     return axios.put(`http://localhost:8080/api/project/id/${projectId}/task/id/${taskId}`, task, {headers: {
         "Content-Type": "application/json"}
     })
 }
 
-addTask(task, projectId) {
+addTask(projectId, task) {
   return axios.post(`http://localhost:8080/api/project/id/${projectId}/task/`, task,
   {headers: {
     "Content-Type": "application/json"}

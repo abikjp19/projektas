@@ -52,7 +52,8 @@ class TasksList extends Component {
        
               <button
                 className="btn btn-outline-info my-2 my-sm-0 ml-2"
-                onClick={this.addTaskClick}
+                onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
+                //onClick={this.addTaskClick}
                 type="submit"
               >Create New Task</button>
             

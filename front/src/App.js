@@ -18,7 +18,7 @@ function App() {
                     <Route path="/" exact component={ProjectsList} />
                     <Route path="/projects" exact component={ProjectsList} />
                     <Route path="/projects/:id" exact component={ProjectForm} />
-                    <Route path="/projects/:id/tasks" exact component={TasksList} />
+                    <Route path="/projects/id/:id/tasks" exact component={TasksList} />
                     <Route path="/projects/id/:id1/tasks/id/:id2" exact component={TaskForm} /> 
                     <Route component={Error}/>
                 </Switch>
