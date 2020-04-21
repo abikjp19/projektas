@@ -53,13 +53,13 @@ class TaskForm extends Component {
             .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks`))
             .then(console.log(values));
         
-            // kazkur turi buti projectId?
+            
         }
-       // else{
-        //     AxiosMethods.updateTask(task, this.state.projectId, this.state.taskId)
-        //     .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks/id/${this.state.taskId}`))  
-        //     .then(console.log(values));
-        // }
+       else{
+            AxiosMethods.updateTask(task, this.state.projectId, this.state.taskId)
+            .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks/id/${this.state.taskId}`))  
+            .then(console.log(values));
+        }
         
 
     }

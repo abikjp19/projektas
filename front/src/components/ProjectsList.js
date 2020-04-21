@@ -43,7 +43,7 @@ class ProjectsList extends Component {
 
   showTaskList = (id) => {
     console.log("tasks of project " + id);
-    this.props.history.push(`/projects/${id}/tasks`);
+    this.props.history.push(`/projects/id/${id}/tasks`);
   };
 
   render() {
