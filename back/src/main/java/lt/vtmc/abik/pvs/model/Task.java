@@ -2,7 +2,6 @@ package lt.vtmc.abik.pvs.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -127,6 +126,5 @@ public class Task {
 //	}
 	
 	//Getteriu ir Setteriu bloko pradzia.
-	
 	
 }
