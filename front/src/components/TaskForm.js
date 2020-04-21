@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import AxiosMethods from '../service/AxiosMethods.js';
+import {Link} from 'react-router-dom';
 
 class TaskForm extends Component {
     constructor(props){
         super(props)
         {console.log(props)}
         this.state = {
-           prjectId: this.props.match.params.id,
-            taskId: this.props.match.params.id,
+           projectId: this.props.match.params.id1,
+            taskId: this.props.match.params.id2,
             taskTitle: "",
             taskDescription: "",
             taskPriority: "",
@@ -23,33 +24,35 @@ class TaskForm extends Component {
         }
         AxiosMethods.findByTaskId(this.state.projectId, this.state.taskId)
         .then(res => this.setState({
-            projectId: res.data.projectId,
-            taskId: res.data.taskId,
+            projectId: this.state.projectId,
+            taskId: res.data.id,
             taskTitle: res.data.taskTitle,
             taskDescription: res.data.taskDescription,
             taskPriority: res.data.taskPriority,
             taskStatus: res.data.taskStatus
         }))
+        .then(console.log(this.state));
     }
 
     onSubmit = (values) =>{
         
         let task = {
-            projectId: values.projectId,
-            taskId: values.taskId,
+            projectId: this.state.projectId,
+            taskId: this.state.taskId,
             taskTitle: values.taskTitle,
             taskDescription: values.taskDescription,
             taskPriority: values.taskPriority,
             taskStatus: values.taskStatus
         }
-        if(this.state.taskId == -1){
+        if(this.state.taskId === -1){
+            //task.taskId = null;
             AxiosMethods.addTask(task, this.state.projectId)
-            .then(() => this.props.history.push('/projects/id/${this.state.projectId}/tasks'))
+            .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks`))
         
             // kazkur turi buti projectId?
         }else{
             AxiosMethods.updateTask(this.state.projectId, this.state.taskId, task)
-            .then(() => this.props.history.push('/projects/id/${this.state.projectId}/tasks/id/{this.state.taskId}'))  
+            .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks/id/${this.state.taskId}`))  
         }
         console.log(values);
 
@@ -105,7 +108,9 @@ class TaskForm extends Component {
                                     <label>Task Status</label>
                                     <Field className="form-control" type="text" name="taskStatus"/>
                                 </fieldset>
+                                
                                 <button className="btn btn-success" type="submit">Save</button>
+                                
                             </Form>
                         }
                     </Formik>

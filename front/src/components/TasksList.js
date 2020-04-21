@@ -52,7 +52,7 @@ class TasksList extends Component {
        
               <button
                 className="btn btn-outline-info my-2 my-sm-0 ml-2"
-                onClick={this.addTaskClick}
+                onClick={this.addTaskClick(this.state.projectId)}
                 type="submit"
               >Create New Task</button>
             
@@ -77,9 +77,9 @@ class TasksList extends Component {
             </thead>
             <tbody>
               {this.state.tasks.map((task) => (
-                <tr key={task.projectId}>
-                  {/* <td>{task.projectId}</td>
-                  <td>{task.taskId}</td> */}
+                <tr key={task.id}>
+                  {/* <td>{task.id}</td>
+                  <td>{task.id}</td> */}
                   <td>{task.taskTitle}</td>
                   <td>{task.taskDescription}</td>
                   <td>{task.taskPriority}</td>
@@ -90,13 +90,13 @@ class TasksList extends Component {
                   <td>
                     <button
                       className="btn btn-danger buttonDel mr-2"
-                      onClick={() => this.deleteTaskClick(task.projectId, task.taskId)}
+                      onClick={() => this.deleteTaskClick(this.state.projectId, task.id)}
                     >
                       <FaTrashAlt />
                     </button>
                     <button
                       className="btn btn-success buttonEdit"
-                      onClick={() => this.editTaskClick(task.projectId, task.taskId)}
+                      onClick={() => this.editTaskClick(this.state.projectId, task.id)}
                     >
                       <FaEdit />
                     </button>
