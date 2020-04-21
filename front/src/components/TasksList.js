@@ -52,7 +52,7 @@ class TasksList extends Component {
        
               <button
                 className="btn btn-outline-info my-2 my-sm-0 ml-2"
-                onClick={this.addTaskClick(this.state.projectId)}
+                onClick={this.addTaskClick}
                 type="submit"
               >Create New Task</button>
             
@@ -78,8 +78,8 @@ class TasksList extends Component {
             <tbody>
               {this.state.tasks.map((task) => (
                 <tr key={task.id}>
-                  {/* <td>{task.id}</td>
-                  <td>{task.id}</td> */}
+                  {/* <td>{task.projectId}</td>
+                  <td>{task.taskId}</td> */}
                   <td>{task.taskTitle}</td>
                   <td>{task.taskDescription}</td>
                   <td>{task.taskPriority}</td>
