@@ -60,9 +60,9 @@ class ProjectsList extends Component {
               </button>
             
         <h3>All Projects</h3>
-        {this.state.message && (
+        {/* {this.state.message && (
           <div className="alert alert-success">{this.state.message}</div>
-        )}
+        )} */}
         <div className="container">
           <table className="table">
             <thead>
@@ -86,7 +86,7 @@ class ProjectsList extends Component {
                     {proj.unfinishedTasks} / {proj.totalTasks}
                   </td>
 
-                  <td>{proj.isFinished ? "Done" : "New"}</td>
+                  <td class="text-lowercase">{proj.isFinished ? "Done" : "New"}</td>
                   <td>
                     <button
                       className="btn btn-danger buttonDel mr-2"

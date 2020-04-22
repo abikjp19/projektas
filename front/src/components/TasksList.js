@@ -30,7 +30,7 @@ class TasksList extends Component {
   deleteTaskClick = (projectId, taskId) => {
     AxiosMethods.deleteByTaskId(projectId, taskId).then((res) => {
       this.setState({ message: `Task was deleted successfuly` });
-      this.refreshTasks();
+      this.refreshTasks(projectId);
     });
   };
 
@@ -83,8 +83,8 @@ class TasksList extends Component {
                   <td>{task.taskId}</td> */}
                   <td>{task.taskTitle}</td>
                   <td>{task.taskDescription}</td>
-                  <td>{task.taskPriority}</td>
-                  <td>{task.taskStatus}</td>
+                  <td class="text-lowercase">{task.taskPriority}</td>
+                  <td class="text-lowercase">{task.taskStatus}</td>
                   <td>{task.createTime}</td>
                   <td>{task.modTime}</td>
 

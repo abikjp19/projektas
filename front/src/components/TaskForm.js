@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import AxiosMethods from '../service/AxiosMethods.js';
+import {Link} from 'react-router-dom';
 
 class TaskForm extends Component {
     constructor(props){
@@ -38,8 +39,8 @@ class TaskForm extends Component {
     onSubmit = (values) =>{
         
         let task = {
-            // projectId: values.projectId,
-        taskId: this.state.taskId,
+        // projectId: values.projectId,
+            taskId: this.state.taskId,
             taskTitle: values.taskTitle,
             taskDescription: values.taskDescription,
             taskPriority: values.taskPriority,
@@ -52,12 +53,9 @@ class TaskForm extends Component {
             AxiosMethods.addTask(this.state.projectId, task)
             .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks`))
             .then(console.log(values));
-        
-            
-        }
-       else{
+        }else{
             AxiosMethods.updateTask(task, this.state.projectId, this.state.taskId)
-            .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks/id/${this.state.taskId}`))  
+            .then(() => this.props.history.push(`/projects/id/${this.state.projectId}/tasks`))  
             .then(console.log(values));
         }
         
@@ -82,7 +80,7 @@ class TaskForm extends Component {
                 <h5>Add / Edit Task</h5>
                 <div className="container">
                     <Formik 
-                    initialValues={{taskId, taskTitle, taskDescription, taskPriority, taskStatus}}
+                    initialValues={{ taskId, taskTitle, taskDescription, taskPriority, taskStatus}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -94,10 +92,10 @@ class TaskForm extends Component {
                             <Form>
                                 <ErrorMessage name="taskTitle" component="div" className="alert alert-warning" />
                                 <ErrorMessage name="taskDescription" component="div" className="alert alert-warning" />
-                                <fieldset className="form-group">
+                                {/* <fieldset className="form-group">
                                     <label>Id</label>
                                     <Field className="form-control" type="text" name="taskId" disabled/>
-                                </fieldset>
+                                </fieldset> */}
                                 <fieldset className="form-group">
                                     <label>Task Title</label>
                                     <Field className="form-control" type="text" name="taskTitle"/>
@@ -107,14 +105,25 @@ class TaskForm extends Component {
                                     <Field className="form-control" type="text" name="taskDescription"/>
                                 </fieldset>
                                 <fieldset className="form-group">
-                                    <label>Task Priority</label>
-                                    <Field className="form-control" type="text" name="taskPriority"/>
-                                </fieldset>
-                                <fieldset className="form-group">
-                                    <label>Task Status</label>
-                                    <Field className="form-control" type="text" name="taskStatus"/>
-                                </fieldset>
+                                    
+                                    <Field type="text" name="taskPriority" placeholder="Select Priority"/>
+                                    <Field as="select" name="taskPriority" >
+                                         <option value="LOW">Low</option>
+                                         <option value="MEDIUM">Medium</option>
+                                         <option value="HIGH">Hight</option>
+                                    </Field>
+                                 </fieldset>
+                                 <fieldset className="form-group">
+                                     <Field type="text" name="taskStatus" placeholder="Select Status"/>
+                                     <Field as="select" name="taskStatus" >
+                                        <option value="NOT_STARTED">New</option>
+                                        <option value="IN_PROGRESS">In progress</option>
+                                        <option value="DONE">Done</option>
+                                    </Field>
+                                  </fieldset>
+                                 
                                 <button className="btn btn-success" type="submit">Save</button>
+                               
                             </Form>
                         }
                     </Formik>
