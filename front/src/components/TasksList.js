@@ -50,17 +50,17 @@ class TasksList extends Component {
     
       <div className="container">
        
-              <button
-                className="btn btn-outline-info my-2 my-sm-0 ml-2"
-                onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
-                //onClick={this.addTaskClick}
-                type="submit"
-              >Create New Task</button>
-            
-        <h3>All Project Tasks</h3>
-        {this.state.message && (
-          <div className="alert alert-success">{this.state.message}</div>
-        )}
+       <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+          <h3 className="col-2 mt-2 ml-5">Tasks</h3>
+
+          <button
+            className=" col-2 btn btn-outline-dark"
+            onClick={this.addProjectClick}
+            type="submit"
+          >
+            Create New Task
+          </button>
+        </div>
         <div className="container">
           <table className="table">
             <thead>
@@ -85,8 +85,8 @@ class TasksList extends Component {
                   <td>{task.taskDescription}</td>
                   <td class="text-lowercase">{task.taskPriority}</td>
                   <td class="text-lowercase">{task.taskStatus}</td>
-                  <td>{task.createTime}</td>
-                  <td>{task.modTime}</td>
+                  <td>{task.createTime.slice(0, 10)} {task.createTime.slice(11, 19)}</td>
+                  <td>{task.modTime.slice(0, 10)} {task.modTime.slice(11, 19)}</td>
 
                   <td>
                     <button

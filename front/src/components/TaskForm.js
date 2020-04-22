@@ -77,8 +77,10 @@ class TaskForm extends Component {
         let { taskId, taskTitle, taskDescription, taskPriority, taskStatus}  = this.state
         return (
             <div>
-                <h5>Add / Edit Task</h5>
                 <div className="container">
+                <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+          <h3 className="col-6 mt-2 ml-5">Create or edit task</h3>
+        </div>
                     <Formik 
                     initialValues={{ taskId, taskTitle, taskDescription, taskPriority, taskStatus}}
                     onSubmit={this.onSubmit}
@@ -106,16 +108,16 @@ class TaskForm extends Component {
                                 </fieldset>
                                 <fieldset className="form-group">
                                     
-                                    <Field type="text" name="taskPriority" placeholder="Select Priority"/>
-                                    <Field as="select" name="taskPriority" >
+                                <label>Task Priority</label>
+                                    <Field as="select" name="taskPriority" className="ml-3" >
                                          <option value="LOW">Low</option>
                                          <option value="MEDIUM">Medium</option>
                                          <option value="HIGH">Hight</option>
                                     </Field>
                                  </fieldset>
                                  <fieldset className="form-group">
-                                     <Field type="text" name="taskStatus" placeholder="Select Status"/>
-                                     <Field as="select" name="taskStatus" >
+                                 <label>Task Status</label>
+                                     <Field as="select" name="taskStatus" className="ml-3" >
                                         <option value="NOT_STARTED">New</option>
                                         <option value="IN_PROGRESS">In progress</option>
                                         <option value="DONE">Done</option>

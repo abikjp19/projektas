@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+.bg-header-collor{
+  background-color: #BFBFBF;
+}
+
+.logo{
+  height: 50px;
+  width: 70px;
+}
+
+.app{
+  background-color: #F2F2F2;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #BCBCBC;
+}
+
+.btn-color{
+  background-color: rgb(242, 121, 131);
+}
+

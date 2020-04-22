@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import { FaListAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 class ProjectsList extends Component {
@@ -36,8 +37,7 @@ class ProjectsList extends Component {
     this.props.history.push(`/projects/${id}`);
   };
 
-  addProjectClick = () =>{
-    
+  addProjectClick = () => {
     this.props.history.push(`/projects/-1`);
   };
 
@@ -47,22 +47,21 @@ class ProjectsList extends Component {
   };
 
   render() {
-    console.log('render')
+    console.log("render");
     return (
       <div className="container">
-        
-              <button
-                className="btn btn-outline-info my-2 my-sm-0 ml-2"
-                onClick={this.addProjectClick}
-                type="submit"
-              >
-                Create New Project
-              </button>
-            
-        <h3>All Projects</h3>
-        {/* {this.state.message && (
-          <div className="alert alert-success">{this.state.message}</div>
-        )} */}
+        <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+          <h3 className="col-2 mt-2 ml-5">All Projects</h3>
+
+          <button
+            className=" col-2 btn btn-outline-dark"
+            onClick={this.addProjectClick}
+            type="submit"
+          >
+            Create New Project
+          </button>
+        </div>
+
         <div className="container">
           <table className="table">
             <thead>
@@ -79,26 +78,36 @@ class ProjectsList extends Component {
               {this.state.projects.map((proj) => (
                 <tr key={proj.id}>
                   <td>{proj.id}</td>
-                  <td>{proj.projectTitle}</td>
+                  <td onClick={() => this.showTaskList(proj.id)}>
+                    {proj.projectTitle}
+                  </td>
                   <td>{proj.projectDescription}</td>
 
                   <td onClick={() => this.showTaskList(proj.id)}>
                     {proj.unfinishedTasks} / {proj.totalTasks}
                   </td>
 
-                  <td class="text-lowercase">{proj.isFinished ? "Done" : "New"}</td>
+                  <td class="text-lowercase">
+                    {proj.isFinished ? "Done" : "New"}
+                  </td>
                   <td>
                     <button
-                      className="btn btn-danger buttonDel mr-2"
+                      className="btn btn-color buttonDel mr-2"
                       onClick={() => this.deleteProjectClick(proj.id)}
                     >
                       <FaTrashAlt />
                     </button>
                     <button
-                      className="btn btn-success buttonEdit"
+                      className="btn btn-color buttonEdit mr-2"
                       onClick={() => this.editProjectClick(proj.id)}
                     >
                       <FaEdit />
+                    </button>
+                    <button
+                      className="btn btn-color buttonlist"
+                      onClick={() => this.showTaskList(proj.id)}
+                    >
+                      <FaListAlt />
                     </button>
                   </td>
                 </tr>
