@@ -61,8 +61,8 @@ public class Task {
 	public Task(String title, String description) {
 		this.taskTitle = title;
 		this.taskDescription = description;
-		//this.taskStatus = TaskStatus.NOT_STARTED;
-		//this.taskPriority = TaskPriority.LOW;
+		//this.project.setTotalTasks();
+		//this.project.setUnfinishedTasks();
 	}
 
 	public int getId() {
