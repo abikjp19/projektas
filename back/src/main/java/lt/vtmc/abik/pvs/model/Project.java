@@ -65,6 +65,8 @@ public class Project {
 	public Project(String title, String description) {
 		this.projectTitle = title;
 		this.projectDescription = description;
+		//setTotalTasks();
+		//setUnfinishedTasks();
 	}
 	
 	//Getteriu ir Setteriu bloko pradzia.
@@ -96,18 +98,22 @@ public class Project {
 		return totalTasks;
 	}
 	
-	public void setTotalTasks(int amount) {
-//		this.totalTasks = this.listOfTasks.size();
-		this.totalTasks = amount;
+	public void setTotalTasks() {
+		this.totalTasks = this.listOfTasks.size();
 	}
 	
 	public int getUnfinishedTasks() {
 		return unfinishedTasks;
 	}
 	
-	public void setUnfinishedTasks(int unfinishedTasks) {
-		//Padaryti logika.
-		this.unfinishedTasks = unfinishedTasks;
+	public void setUnfinishedTasks() {
+		int totalUnfinished = 0;
+		for (Task task : listOfTasks) {
+			if(!task.getTaskStatus().equals(TaskStatus.DONE)) {
+				totalUnfinished++;
+			}
+		}
+		this.unfinishedTasks = totalUnfinished;
 	}
 	
 	public boolean isFinished() {
@@ -126,11 +132,15 @@ public class Project {
 	
 	public void addTask(Task task) {
 		this.listOfTasks.add(task);
+		setTotalTasks();
+		setUnfinishedTasks();
 		task.setProject(this);
 	}
 	
 	public void removeTask(Task task) {
 		this.listOfTasks.remove(task);
+		setTotalTasks();
+		setUnfinishedTasks();
 		task.setProject(null);
 	}
 }

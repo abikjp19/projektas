@@ -28,16 +28,17 @@ public class BackApplication {
 			Project proj1 = new Project("project1", "Cha cha cha"); 
 			Project proj2 = new Project("project2", "Chi chi chi");
 			Project proj3 = new Project("project3", "Cho cho cho");
-			repo.save(proj1);
-			repo.save(proj2);
-			repo.save(proj3);
 			
 			Task task1 = new Task("task1", "Cha chi cho");
 			Task task2 = new Task("task2", "Cho cha chi");
 			Task task3 = new Task("task3", "Chi cho cha");
+			
 			proj1.addTask(task1);
 			proj1.addTask(task2);
 			proj2.addTask(task3);
+			repo.save(proj1);
+			repo.save(proj2);
+			repo.save(proj3);
 			repo2.save(task1);
 			repo2.save(task2);
 			repo2.save(task3);

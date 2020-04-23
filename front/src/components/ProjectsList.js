@@ -49,8 +49,8 @@ class ProjectsList extends Component {
   render() {
     console.log("render");
     return (
-      <div className="container">
-        <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+      <div className="container-fluid">
+        <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
           <h3 className="col-2 mt-2 ml-5">All Projects</h3>
 
           <button
@@ -92,19 +92,19 @@ class ProjectsList extends Component {
                   </td>
                   <td>
                     <button
-                      className="btn btn-color buttonDel mr-2"
+                      className="btn btn-color buttonDel mr-2 btn-sm"
                       onClick={() => this.deleteProjectClick(proj.id)}
                     >
-                      <FaTrashAlt />
+                      <FaTrashAlt/>
                     </button>
                     <button
-                      className="btn btn-color buttonEdit mr-2"
+                      className="btn btn-color buttonEdit mr-2 btn-sm"
                       onClick={() => this.editProjectClick(proj.id)}
                     >
                       <FaEdit />
                     </button>
                     <button
-                      className="btn btn-color buttonlist"
+                      className="btn btn-color buttonlist btn-sm"
                       onClick={() => this.showTaskList(proj.id)}
                     >
                       <FaListAlt />

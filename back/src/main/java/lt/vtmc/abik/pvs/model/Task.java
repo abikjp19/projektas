@@ -2,7 +2,6 @@ package lt.vtmc.abik.pvs.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -62,8 +61,8 @@ public class Task {
 	public Task(String title, String description) {
 		this.taskTitle = title;
 		this.taskDescription = description;
-		//this.taskStatus = TaskStatus.NOT_STARTED;
-		//this.taskPriority = TaskPriority.LOW;
+		//this.project.setTotalTasks();
+		//this.project.setUnfinishedTasks();
 	}
 
 	public int getId() {
@@ -127,6 +126,5 @@ public class Task {
 //	}
 	
 	//Getteriu ir Setteriu bloko pradzia.
-	
 	
 }

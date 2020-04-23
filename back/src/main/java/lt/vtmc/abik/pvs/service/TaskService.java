@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lt.vtmc.abik.pvs.model.Project;
 import lt.vtmc.abik.pvs.model.Task;
 import lt.vtmc.abik.pvs.repository.ProjectRepository;
 import lt.vtmc.abik.pvs.repository.TaskRepository;
@@ -42,12 +41,14 @@ public class TaskService {
 	
 	public void add(Task task, int projectId) {
 		projectRepository.findByProjectId(projectId).addTask(task);
+		projectRepository.save(projectRepository.findByProjectId(projectId));
 		taskRepository.save(task);
 		System.out.println("Task added.");
 	}
 	
 	public void deleteByTaskId(int taskId, int projectId) {
 		projectRepository.findByProjectId(projectId).removeTask(taskRepository.findByTaskId(taskId));
+		projectRepository.save(projectRepository.findByProjectId(projectId));
 		taskRepository.deleteById(taskId);
 		System.out.println("Task with the id of '" + taskId + "' was deleted.");
 	}
@@ -63,6 +64,9 @@ public class TaskService {
 		oldTask.setTaskPriority(newTask.getTaskPriority());
 		oldTask.setTaskStatus(newTask.getTaskStatus());
 		oldTask.setTaskTitle(newTask.getTaskTitle());
+		oldTask.getProject().setTotalTasks();
+		oldTask.getProject().setUnfinishedTasks();
+		projectRepository.save(oldTask.getProject());
 		taskRepository.save(oldTask);
 	}
 }

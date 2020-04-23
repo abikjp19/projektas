@@ -77,10 +77,11 @@ class TaskForm extends Component {
         let { taskId, taskTitle, taskDescription, taskPriority, taskStatus}  = this.state
         return (
             <div>
-                <div className="container">
-                <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+                
+                <div className="row container-fluid d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
           <h3 className="col-6 mt-2 ml-5">Create or edit task</h3>
         </div>
+        <div className="container">
                     <Formik 
                     initialValues={{ taskId, taskTitle, taskDescription, taskPriority, taskStatus}}
                     onSubmit={this.onSubmit}
@@ -112,7 +113,7 @@ class TaskForm extends Component {
                                     <Field as="select" name="taskPriority" className="ml-3" >
                                          <option value="LOW">Low</option>
                                          <option value="MEDIUM">Medium</option>
-                                         <option value="HIGH">Hight</option>
+                                         <option value="HIGH">High</option>
                                     </Field>
                                  </fieldset>
                                  <fieldset className="form-group">
@@ -129,8 +130,9 @@ class TaskForm extends Component {
                             </Form>
                         }
                     </Formik>
+                    </div>
                 </div>
-            </div>
+          
         );
     }
 }

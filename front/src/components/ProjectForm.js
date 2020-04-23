@@ -58,10 +58,11 @@ class ProjectForm extends Component {
         let { projectTitle, projectDescription}  = this.state
         return (
             <div>
-                <div className="container">
-                <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+                
+                <div className="row d-flex container-fluid flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm">
           <h3 className="col-6 mt-2 ml-5">Create or edit project</h3>
-        </div>
+          </div>
+       <div className="container">
                     <Formik 
                     initialValues={{projectTitle, projectDescription}}
                     onSubmit={this.onSubmit}
@@ -91,7 +92,8 @@ class ProjectForm extends Component {
                             </Form>
                         }
                     </Formik>
-                </div>
+                    </div>
+                
             </div>
         );
     }

@@ -48,21 +48,21 @@ class TasksList extends Component {
     
     return (
     
-      <div className="container">
+      <div className="container-fluid">
        
-       <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-header-collor border-bottom shadow-sm header">
+       <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
           <h3 className="col-2 mt-2 ml-5">Tasks</h3>
 
           <button
             className=" col-2 btn btn-outline-dark"
-            onClick={this.addProjectClick}
+            onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
             type="submit"
           >
             Create New Task
           </button>
         </div>
         <div className="container">
-          <table className="table">
+          <table className="table mb-0">
             <thead>
               <tr>
                 {/* <th>ProjectId</th>
@@ -83,20 +83,20 @@ class TasksList extends Component {
                   <td>{task.taskId}</td> */}
                   <td>{task.taskTitle}</td>
                   <td>{task.taskDescription}</td>
-                  <td class="text-lowercase">{task.taskPriority}</td>
-                  <td class="text-lowercase">{task.taskStatus}</td>
+                  <td className="text-special">{task.taskPriority}</td>
+                  <td className="text-special">{task.taskStatus.replace(/_/, ' ')}</td>
                   <td>{task.createTime.slice(0, 10)} {task.createTime.slice(11, 19)}</td>
                   <td>{task.modTime.slice(0, 10)} {task.modTime.slice(11, 19)}</td>
 
                   <td>
                     <button
-                      className="btn btn-danger buttonDel mr-2"
+                      className="btn btn-danger buttonDel mr-2 btn-sm"
                       onClick={() => this.deleteTaskClick(this.state.projectId, task.id)}
                     >
                       <FaTrashAlt />
                     </button>
                     <button
-                      className="btn btn-success buttonEdit"
+                      className="btn btn-success buttonEdit btn-sm"
                       onClick={() => this.editTaskClick(this.state.projectId, task.id)}
                     >
                       <FaEdit />

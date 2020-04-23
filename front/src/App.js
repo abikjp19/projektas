@@ -7,9 +7,10 @@ import Main from './components/Main.js'
 function App() {
   return (
 <div>
-        
+        <div className="main-container">
                     <Header />
                     <Main />
+                    </div>
            
             <Footer />
             </div>

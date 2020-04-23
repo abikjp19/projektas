@@ -10,7 +10,7 @@ import Error from './Error.js';
 function Main(props) {
     return (
         
-            <div className="main-bg-color main">
+            <div className="main-bg-color">
                 <Switch>
                     <Route path="/" exact component={ProjectsList} />
                     <Route path="/projects" exact component={ProjectsList} />
