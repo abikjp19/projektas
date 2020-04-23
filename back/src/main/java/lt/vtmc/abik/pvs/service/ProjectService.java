@@ -53,6 +53,8 @@ public class ProjectService {
 	public void updateProject(int id, Project newProject) {
 		int oldId = this.findByProjectId(id).getId();
 		newProject.setId(oldId);
+		newProject.setTotalTasks();
+		newProject.setUnfinishedTasks();
 		projectRepository.save(newProject);
 	}
 }
