@@ -50,7 +50,7 @@ class ProjectsList extends Component {
     console.log("render");
     return (
       <div className="container-fluid">
-        <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
+        <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
           <h3 className="col-2 mt-2 ml-5">All Projects</h3>
 
           <button

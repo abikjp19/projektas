@@ -49,17 +49,19 @@ class TasksList extends Component {
     return (
     
       <div className="container-fluid">
-       
-       <div className="row d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
-          <h3 className="col-2 mt-2 ml-5">Tasks</h3>
+       <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
+
+      <h3 className="col-3 mt-2 ml-5">Tasks </h3>
+<p className="col-3 mt-2 ml-5"><b>Project Id {this.state.projectId}</b></p>
 
           <button
-            className=" col-2 btn btn-outline-dark"
+            className=" col-3 btn btn-outline-dark ml-5"
             onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
             type="submit"
           >
             Create New Task
           </button>
+         <div className=" col-1"></div>
         </div>
         <div className="container">
           <table className="table mb-0">
