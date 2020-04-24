@@ -113,6 +113,11 @@ public class Project {
 				totalUnfinished++;
 			}
 		}
+		if(totalUnfinished == 0) {
+			this.setFinished(true);
+		} else {
+			this.setFinished(false);
+		}
 		this.unfinishedTasks = totalUnfinished;
 	}
 	
@@ -120,8 +125,8 @@ public class Project {
 		return isFinished;
 	}
 	
-	public void setFinished() {
-		this.isFinished = true;
+	public void setFinished(boolean status) {
+		this.isFinished = status;
 	}
 
 	public Set<Task> getListOfTasks() {
