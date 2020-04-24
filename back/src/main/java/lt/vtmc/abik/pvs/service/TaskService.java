@@ -41,7 +41,7 @@ public class TaskService {
 	
 	public void add(Task task, int projectId) {
 		projectRepository.findByProjectId(projectId).addTask(task);
-		projectRepository.save(projectRepository.findByProjectId(projectId));
+		//projectRepository.save(projectRepository.findByProjectId(projectId));
 		taskRepository.save(task);
 		System.out.println("Task added.");
 	}
