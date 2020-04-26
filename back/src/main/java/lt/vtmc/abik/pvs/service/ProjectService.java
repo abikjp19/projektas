@@ -51,10 +51,11 @@ public class ProjectService {
 	}
 	
 	public void updateProject(int id, Project newProject) {
-		int oldId = this.findByProjectId(id).getId();
-		newProject.setId(oldId);
-		newProject.setTotalTasks();
-		newProject.setUnfinishedTasks();
-		projectRepository.save(newProject);
+		Project oldProject = this.findByProjectId(id);
+		oldProject.setProjectTitle(newProject.getProjectTitle());
+		oldProject.setProjectDescription(newProject.getProjectDescription());
+		oldProject.setTotalTasks();
+		oldProject.setUnfinishedTasks();
+		projectRepository.save(oldProject);
 	}
 }
