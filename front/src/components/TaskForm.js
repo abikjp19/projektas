@@ -125,7 +125,7 @@ class TaskForm extends Component {
                                     </Field>
                                   </fieldset>
                                  
-                                <button className="btn btn-success" type="submit">Save</button>
+                                <button className="btn btn-color" type="submit">Save</button>
                                
                             </Form>
                         }

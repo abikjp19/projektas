@@ -88,7 +88,7 @@ class ProjectForm extends Component {
                                     <label>Project Description</label>
                                     <Field className="form-control" type="text" name="projectDescription"/>
                                 </fieldset>
-                                <button className="btn btn-success" type="submit">Save</button>
+                                <button className="btn btn-color" type="submit">Save</button>
                             </Form>
                         }
                     </Formik>

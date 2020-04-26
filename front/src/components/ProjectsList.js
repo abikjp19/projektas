@@ -69,9 +69,9 @@ class ProjectsList extends Component {
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Tasks</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th className="text-right">Tasks</th>
+                <th className="text-right">Status</th>
+                <th className="text-right">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -83,28 +83,28 @@ class ProjectsList extends Component {
                   </td>
                   <td>{proj.projectDescription}</td>
 
-                  <td onClick={() => this.showTaskList(proj.id)}>
+                  <td className="text-right td-minimize" onClick={() => this.showTaskList(proj.id)}>
                     {proj.unfinishedTasks} / {proj.totalTasks}
                   </td>
 
-                  <td class="text-lowercase">
-                    {proj.isFinished ? "Done" : "New"}
+                  <td class="text-special text-right td-minimize">
+                    {proj.finished ? "Done" : "New"}
                   </td>
-                  <td>
+                  <td className="text-right  td-minimize-action">
                     <button
-                      className="btn btn-color buttonDel mr-2 btn-sm"
+                      className="btn btn-danger buttonDel mr-2 btn-sm"
                       onClick={() => this.deleteProjectClick(proj.id)}
                     >
                       <FaTrashAlt/>
                     </button>
                     <button
-                      className="btn btn-color buttonEdit mr-2 btn-sm"
+                      className="btn btn-success buttonEdit mr-2 btn-sm"
                       onClick={() => this.editProjectClick(proj.id)}
                     >
                       <FaEdit />
                     </button>
                     <button
-                      className="btn btn-color buttonlist btn-sm"
+                      className="btn btn-secondary buttonlist btn-sm"
                       onClick={() => this.showTaskList(proj.id)}
                     >
                       <FaListAlt />

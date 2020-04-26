@@ -61,6 +61,7 @@
   /* irgi grazu */
   /* background-color: #038C3E; */
   /* background-color: #8c8c8c; */
+  color: whitesmoke;
 
 }
 
@@ -139,4 +140,15 @@ text-transform: lowercase;
      font-size: small;
    } */
 
-  
+  .btn-margin{
+    margin-right: 5%;
+    max-width: 10rem;
+  }
+
+  .td-minimize{
+    width: 10%;
+  }
+
+  .td-minimize-action{
+    width: 17%;
+  }
