@@ -113,7 +113,7 @@ public class Project {
 				totalUnfinished++;
 			}
 		}
-		if(totalUnfinished == 0) {
+		if(totalUnfinished == 0 && this.totalTasks != 0) {
 			this.setFinished(true);
 		} else {
 			this.setFinished(false);
