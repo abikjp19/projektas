@@ -20,6 +20,7 @@ class TasksList extends Component {
     this.refreshTasks(this.state.projectId);
   }
 
+  
   refreshTasks = (projectId) => {
     AxiosMethods.getAllTasks(projectId).then((res) => {
       console.log(res);
@@ -27,11 +28,16 @@ class TasksList extends Component {
     });
   };
 
+  
   deleteTaskClick = (projectId, taskId) => {
-    AxiosMethods.deleteByTaskId(projectId, taskId).then((res) => {
-      this.setState({ message: `Task was deleted successfuly` });
-      this.refreshTasks(projectId);
-    });
+    AxiosMethods.deleteByTaskId(projectId, taskId)
+  
+    .then((projectId) => {
+     
+      this.refreshTasks(projectId)
+      
+    })
+    .then(console.log("res"));
   };
 
   editTaskClick = (projectId, taskId) => {
@@ -94,6 +100,7 @@ class TasksList extends Component {
                     <button
                       className="btn btn-danger buttonDel mr-2 btn-sm"
                       onClick={() => this.deleteTaskClick(this.state.projectId, task.id)}
+                      
                     >
                       <FaTrashAlt />
                     </button>

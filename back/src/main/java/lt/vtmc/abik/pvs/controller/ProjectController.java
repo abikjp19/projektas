@@ -22,7 +22,7 @@ import lt.vtmc.abik.pvs.service.ProjectService;
 
 @RestController
 @RequestMapping("api/project/")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 public class ProjectController {
 
 	@Autowired

@@ -22,7 +22,7 @@ import lt.vtmc.abik.pvs.service.TaskService;
 
 @RestController
 @RequestMapping("api/project/id/{projectId}/task/")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3001")
 public class TaskController {
 
 	@Autowired

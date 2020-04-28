@@ -27,7 +27,7 @@ class ProjectsList extends Component {
 
   deleteProjectClick = (id) => {
     AxiosMethods.deleteById(id).then((res) => {
-      this.setState({ message: `Project was deleted successfuly` });
+      console.log(res);
       this.refreshProject();
     });
   };
