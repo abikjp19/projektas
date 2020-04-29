@@ -3,7 +3,6 @@ import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -90,7 +89,7 @@ finishedTasks = (unfinishedTasks, totalTasks) => {
                     {this.finishedTasks(proj.unfinishedTasks, proj.totalTasks)} / {proj.totalTasks}
                   </td>
 
-                  <td class="text-special text-right td-minimize">
+                  <td className="text-special text-right td-minimize">
                     {proj.finished ? "Done" : "New"}
                   </td>
                   <td className="text-right  td-minimize-action">

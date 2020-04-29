@@ -152,3 +152,8 @@ text-transform: lowercase;
   .td-minimize-action{
     width: 17%;
   }
+
+  .input-color{
+    background-color: #BFBFBF;
+    border: black;
+  }

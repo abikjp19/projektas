@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import {Formik, Form, Field, ErrorMessage} from 'formik';
 import AxiosMethods from '../service/AxiosMethods.js';
-import {Link} from 'react-router-dom';
 
 class TaskForm extends Component {
     constructor(props){
         super(props)
-        {console.log(props)}
+        console.log(props)
         this.state = {
            projectId: this.props.match.params.id1,
             taskId: this.props.match.params.id2,
