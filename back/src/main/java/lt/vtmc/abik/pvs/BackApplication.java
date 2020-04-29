@@ -25,13 +25,13 @@ public class BackApplication {
 	public CommandLineRunner example(ProjectRepository repo, TaskRepository repo2) {
 		return (args) -> {
 			//repo.deleteAll();
-			Project proj1 = new Project("project1", "Cha cha cha"); 
-			Project proj2 = new Project("project2", "Chi chi chi");
-			Project proj3 = new Project("project3", "Cho cho cho");
+			Project proj1 = new Project("Karūna", "Juodasis šokoladas su migdolais"); 
+			Project proj2 = new Project("Princas", "Pieniškas šokoladas su tiramisu įdaru");
+			Project proj3 = new Project("Karštas šokoladas", "Toks skanus kaip operos ir baleto teatre");
 			
-			Task task1 = new Task("task1", "Cha chi cho");
-			Task task2 = new Task("task2", "Cho cha chi");
-			Task task3 = new Task("task3", "Chi cho cha");
+			Task task1 = new Task("Prie kavos", "Du gabaliukai kasdien");
+			Task task2 = new Task("Krims-krimst", "hmmm");
+			Task task3 = new Task("Karti kakava", "Tirpsta burnoje");
 			
 			proj1.addTask(task1);
 			proj1.addTask(task2);
