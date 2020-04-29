@@ -45,7 +45,10 @@ class ProjectsList extends Component {
     console.log("tasks of project " + id);
     this.props.history.push(`/projects/id/${id}/tasks`);
   };
-
+finishedTasks = (unfinishedTasks, totalTasks) => {
+  return totalTasks - unfinishedTasks;
+}
+  
   render() {
     console.log("render");
     return (
@@ -84,7 +87,7 @@ class ProjectsList extends Component {
                   <td>{proj.projectDescription}</td>
 
                   <td className="text-right td-minimize" onClick={() => this.showTaskList(proj.id)}>
-                    {proj.unfinishedTasks} / {proj.totalTasks}
+                    {this.finishedTasks(proj.unfinishedTasks, proj.totalTasks)} / {proj.totalTasks}
                   </td>
 
                   <td class="text-special text-right td-minimize">

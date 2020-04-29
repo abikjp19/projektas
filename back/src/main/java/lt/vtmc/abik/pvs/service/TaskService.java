@@ -49,7 +49,7 @@ public class TaskService {
 	public void deleteByTaskId(int taskId, int projectId) {
 		projectRepository.findByProjectId(projectId).removeTask(taskRepository.findByTaskId(taskId));
 		projectRepository.save(projectRepository.findByProjectId(projectId));
-		taskRepository.deleteById(taskId);
+//		taskRepository.deleteById(taskId);
 		System.out.println("Task with the id of '" + taskId + "' was deleted.");
 	}
 	

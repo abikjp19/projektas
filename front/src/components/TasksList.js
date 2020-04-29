@@ -20,7 +20,7 @@ class TasksList extends Component {
     this.refreshTasks(this.state.projectId);
   }
 
-  
+
   refreshTasks = (projectId) => {
     AxiosMethods.getAllTasks(projectId).then((res) => {
       console.log(res);
@@ -28,14 +28,10 @@ class TasksList extends Component {
     });
   };
 
-  
   deleteTaskClick = (projectId, taskId) => {
     AxiosMethods.deleteByTaskId(projectId, taskId)
-  
     .then((projectId) => {
-     
-      this.refreshTasks(projectId)
-      
+      this.refreshTasks(this.state.projectId)
     })
     .then(console.log("res"));
   };
