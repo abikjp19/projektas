@@ -154,6 +154,20 @@ text-transform: lowercase;
   }
 
   .input-color{
-    background-color: #BFBFBF;
+    background-color: secondary;
     border: black;
   }
+
+.bg-low{
+  background-color: lightgoldenrodyellow;
+  /* background-image: ; */
+}
+
+.bg-medium{
+  background-color: lightgreen;
+}
+
+.bg-high{
+  background-color: lightcoral;
+}
+
