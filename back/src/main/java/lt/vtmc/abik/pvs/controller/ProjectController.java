@@ -2,6 +2,8 @@ package lt.vtmc.abik.pvs.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -62,4 +64,9 @@ public class ProjectController {
 	  public void updateProject(@RequestBody Project newProject, @PathVariable int id) {
 		projectService.updateProject(id, newProject);
 	  }
+	
+	@GetMapping("export/projects.csv")
+	public void exportProjects(HttpServletResponse res) throws Exception{
+		projectService.exportProjects(res);
+	}
 }
