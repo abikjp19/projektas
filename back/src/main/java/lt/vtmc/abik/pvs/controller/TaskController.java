@@ -2,6 +2,8 @@ package lt.vtmc.abik.pvs.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,5 +58,10 @@ public class TaskController {
 	@PutMapping("id/{taskId}")
 	public void updateTask(@RequestBody Task newTask, @PathVariable int projectId, @PathVariable int taskId) {
 		taskService.updateTask(taskId, newTask);
+	}
+	
+	@GetMapping("export/project{projectId}Tasks.csv")
+	public void exportTasks(@PathVariable int projectId, HttpServletResponse res) throws Exception {
+		taskService.exportTasks(res, projectId);
 	}
 }
