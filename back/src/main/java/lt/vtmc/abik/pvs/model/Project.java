@@ -14,39 +14,38 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvIgnore;
 /**
  * @author Bartas Beitas
  */
 
 @Entity
-//@Table(name="PROJECT")
 public class Project {
 
-	/*
-	 * Dar padaryti:
-	 * setUnfinishedTasks logika.
-	 * Implementuoti listOfTasks.
-	 * removeTask.
-	 */
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@CsvBindByPosition(position = 0)
 	private int projectId;
 	
 	@Column(nullable=false)
+	@CsvBindByPosition(position = 1)
 	private String projectTitle;
 	
 	@Column(nullable=false)
+	@CsvBindByPosition(position = 2)
 	private String projectDescription;
 	
 	@Column(nullable=true)
+	@CsvBindByPosition(position = 3)
 	private int totalTasks;
 	
 	@Column(nullable=true)
+	@CsvBindByPosition(position = 4)
 	private int unfinishedTasks;
 	
 	@Column(nullable=false)
+	@CsvBindByPosition(position = 5)
 	private boolean isFinished;
 	
 	@OneToMany(
@@ -55,9 +54,9 @@ public class Project {
 			cascade=CascadeType.ALL,
 			fetch=FetchType.EAGER
 	)
-	//@OneToMany
 	@ElementCollection
 	@JsonIgnore
+	@CsvIgnore
 	private Set<Task> listOfTasks = new HashSet<Task>();
 	
 	protected Project() {};
@@ -65,8 +64,6 @@ public class Project {
 	public Project(String title, String description) {
 		this.projectTitle = title;
 		this.projectDescription = description;
-		//setTotalTasks();
-		//setUnfinishedTasks();
 	}
 	
 	//Getteriu ir Setteriu bloko pradzia.

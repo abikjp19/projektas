@@ -17,6 +17,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvBindByPosition;
+import com.opencsv.bean.CsvDate;
+import com.opencsv.bean.CsvIgnore;
 
 /**
  * @author Bartas Beitas
@@ -27,33 +31,41 @@ public class Task {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@CsvBindByPosition(position = 0)
 	private int taskId;
 	
 	@Column(nullable=false)
+	@CsvBindByPosition(position = 1)
 	private String taskTitle;
 	
 	@Column(nullable=false)
+	@CsvBindByPosition(position = 2)
 	private String taskDescription;
 	
 	@Enumerated(EnumType.STRING)
-	//@Column(nullable=false)
+	@CsvBindByPosition(position = 3)
 	private TaskPriority taskPriority = TaskPriority.LOW;
 	
 	@Enumerated(EnumType.STRING)
-	//@Column(nullable=false)
+	@CsvBindByPosition(position = 4)
 	private TaskStatus taskStatus = TaskStatus.NOT_STARTED;
 	
 	@Column(updatable = false)
 	@CreationTimestamp
+	@CsvBindByPosition(position = 5)
+	@CsvDate("yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime createTime;
 	
 	@UpdateTimestamp
 	@Column
+	@CsvBindByPosition(position = 6)
+	@CsvDate("yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime modTime;
 	
-	@ManyToOne(fetch=FetchType.LAZY, optional = false)
+	@ManyToOne(fetch=FetchType.EAGER, optional = false)
 	@JoinColumn(name="project_id", nullable = false)
 	@JsonIgnore
+	@CsvIgnore
 	private Project project;
 	
 	protected Task() {};
@@ -61,8 +73,6 @@ public class Task {
 	public Task(String title, String description) {
 		this.taskTitle = title;
 		this.taskDescription = description;
-		//this.project.setTotalTasks();
-		//this.project.setUnfinishedTasks();
 	}
 
 	public int getId() {
@@ -120,10 +130,6 @@ public class Task {
 	public void setTaskStatus(TaskStatus taskStatus) {
 		this.taskStatus = taskStatus;
 	}
-
-//	public void setModTime(LocalDateTime modTime) {
-//		this.modTime = modTime;
-//	}
 	
 	//Getteriu ir Setteriu bloko pradzia.
 	

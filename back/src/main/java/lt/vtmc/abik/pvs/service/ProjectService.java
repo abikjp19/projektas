@@ -1,9 +1,17 @@
 package lt.vtmc.abik.pvs.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
+
+import com.opencsv.CSVWriter;
+import com.opencsv.bean.StatefulBeanToCsv;
+import com.opencsv.bean.StatefulBeanToCsvBuilder;
 
 import lt.vtmc.abik.pvs.model.Project;
 import lt.vtmc.abik.pvs.repository.ProjectRepository;
@@ -57,5 +65,19 @@ public class ProjectService {
 		oldProject.setTotalTasks();
 		oldProject.setUnfinishedTasks();
 		projectRepository.save(oldProject);
+	}
+	
+	public void exportProjects(HttpServletResponse res) throws Exception{
+		//String filename = "projects.csv";
+		res.setContentType("text/csv");
+		//res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename\"" + filename + "\"");
+		//res.setHeader("Content-Disposition", "attachment; file=projects.csv");
+//		StatefulBeanToCsv<Project> expProject = new StatefulBeanToCsvBuilder<Project>(res.getWriter())
+//				.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).withSeparator(CSVWriter.DEFAULT_SEPARATOR)
+//				.withOrderedResults(false).build();
+		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
+		List<Project> projects = new ArrayList<Project>();
+		this.getAll().forEach(projects::add);
+		expProject.write(projects);
 	}
 }

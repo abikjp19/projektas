@@ -93,8 +93,6 @@ class TasksBoard extends Component {
             })
     }
 
-
-
     render() {
         const notStarted = this.state.tasks.filter(task => task.taskStatus === "NOT_STARTED");
         const inProgress = this.state.tasks.filter(task => task.taskStatus === "IN_PROGRESS");
@@ -171,9 +169,7 @@ class TasksBoard extends Component {
                                 </div>
                             ))}
                         </div>
-
                     </div>
-
                 </div>
             </div>
         );
