@@ -3,6 +3,7 @@ import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 
+
 class TasksList extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,6 @@ class TasksList extends Component {
   componentDidMount() {
     this.refreshTasks(this.state.projectId);
   }
-
 
   refreshTasks = (projectId) => {
     AxiosMethods.getAllTasks(projectId).then((res) => {
@@ -44,8 +44,33 @@ class TasksList extends Component {
     this.props.history.push(`/projects/id/${projectId}/tasks/id/-1`);
   };
 
+  handleChange = (e) =>{
+    console.log(e.target.value);
+    const val = e.target.value;
+    console.log(val);
+    var item = this.state.tasks.filter((data)=>{
+      if(data.id == val)
+          return data
+          // console.log(data)
+  })
+ 
+   console.log(item);
+   this.setState({tasks: item});
+   
+  };
+
+   searchTaskById = (projectId, taskId) => {
+    AxiosMethods.findByTaskId(projectId, taskId)
+    .then((projectId) => {
+      this.refreshTasks(this.state.projectId)
+    })
+    .then(console.log("res"));
+   };
+  
+
   render() {
-    console.log('render')
+
+const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/export/project${this.state.projectId}Tasks.csv`
 
     return (
 
@@ -56,18 +81,27 @@ class TasksList extends Component {
           <p className="col-lg-2 col-sm-3 mt-2 "><b>Project Id {this.state.projectId}</b></p>
 
           <button
-            className=" col-lg-2 col-sm-3 btn btn-outline-dark "
+            className=" col-lg-1 col-sm-3 btn btn-outline-dark "
             onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
             type="submit"
           >
-            Create New Task
+            Create
           </button>
 
-          <a className="col-lg-2 col-sm-3 btn btn-outline-dark " href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Tasks Board</a>
+          <a className=" col-1 btn btn-outline-dark" href={path}> Export</a>
+           
+          <a className="col-lg-1 col-sm-3 btn btn-outline-dark" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
 
           <form className="form-inline col-lg-4 col-sm-4">
-            <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
-            <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit">Search</button>
+            <input 
+            className="form-control mr-sm-2 input-color border border-dark" type="text" 
+            value = {this.state.tasks.id}
+            // onChange={this.handleChange}
+            name="taskId"
+            />
+            <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit"
+           onClick={() => this.searchTaskById(this.state.projectId, this. state.tasks.id)}
+            >Search</button>
           </form>
 
         </div>
