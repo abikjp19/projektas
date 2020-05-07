@@ -77,12 +77,15 @@ public class ProjectService {
 	
 	public List<Project> searchProjects(String fragment) {
 		List<Project> results = new ArrayList<Project>();
-		int id = Integer.parseInt(fragment);
-		Project byId = this.findByProjectId(id);
-		if(byId != null)
-			results.add(byId);
+		try{
+			int id = Integer.parseInt(fragment);
+			Project byId = this.findByProjectId(id);
+			if(byId != null)
+				results.add(byId);
+		}
+		catch(NumberFormatException e) {}
 		for (Project project : this.getAll()) {
-			if(project.getProjectTitle().contains(fragment))
+			if(project.getProjectTitle().toLowerCase().contains(fragment.toLowerCase()))
 				results.add(project);
 		}
 		return results;

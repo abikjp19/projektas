@@ -70,7 +70,7 @@ public class ProjectController {
 		projectService.exportProjects(res);
 	}
 	
-	@GetMapping("search")
+	@PutMapping("search")
 	public List<Project> searchProjects(@RequestBody String fragment){
 		return projectService.searchProjects(fragment);
 	}
