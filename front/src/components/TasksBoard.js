@@ -28,6 +28,10 @@ class TasksBoard extends Component {
         });
     };
 
+    // refreshTasks = () => {
+    //     window.location.reload(false);
+    //   };
+
     changeToNotStarted = (projectId, taskId) => {
         console.log(projectId, taskId);
         let updatedTask = AxiosMethods.findByTaskId(projectId, taskId)
@@ -44,7 +48,8 @@ class TasksBoard extends Component {
                 }
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
-                this.refreshTasks(projectId);
+                // this.refreshTasks(projectId);
+                window.location.reload(false);
               
             })
     }
@@ -65,7 +70,8 @@ class TasksBoard extends Component {
                 }
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
-                this.refreshTasks(projectId);
+                // this.refreshTasks(projectId);
+                window.location.reload(false);
                 
             })
     }
@@ -88,7 +94,8 @@ class TasksBoard extends Component {
                 }
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
-                this.refreshTasks(projectId);
+                // this.refreshTasks(projectId);
+                window.location.reload(false);
                 
             })
     }

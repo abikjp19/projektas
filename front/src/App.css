@@ -182,3 +182,6 @@ text-transform: lowercase;
   color:#292b2c;
 }
 
+.input-max-width{
+  width: 40px;
+}

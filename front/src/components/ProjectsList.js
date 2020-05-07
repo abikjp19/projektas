@@ -3,6 +3,7 @@ import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
+import ProjectSearch from './ProjectSearch';
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -44,9 +45,15 @@ class ProjectsList extends Component {
     console.log("tasks of project " + id);
     this.props.history.push(`/projects/id/${id}/tasks`);
   };
+
   finishedTasks = (unfinishedTasks, totalTasks) => {
     return totalTasks - unfinishedTasks;
   }
+
+  search = (projects) => {
+    console.log(projects);
+    this.setState({projects});
+}
 
   render() {
     console.log("render");
@@ -65,10 +72,12 @@ class ProjectsList extends Component {
 
           <a className=" col-2 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
 
-          <form className="form-inline col-lg-4 col-sm-4">
+          {/* <form className="form-inline col-lg-4 col-sm-4">
             <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
             <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit">Search</button>
-          </form>
+          </form> */}
+
+<ProjectSearch search={this.search} projectId={this.state.projects.projectId}/>
 
         </div>
 

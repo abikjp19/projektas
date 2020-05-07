@@ -3,8 +3,7 @@ import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import '../App.css';
-import TaskSearchById from './TaskSearchById.js';
-import TaskSearchByTitle from './TaskSearchByTitle.js'
+import TaskSearch from './TaskSearch.js'
 
 
 class TasksList extends Component {
@@ -29,6 +28,10 @@ class TasksList extends Component {
       this.setState({ tasks: res.data });
     });
   };
+
+  //  refreshTasks = () => {
+  //       window.location.reload(false);
+  //     };
 
   deleteTaskClick = (projectId, taskId) => {
     AxiosMethods.deleteByTaskId(projectId, taskId)
@@ -72,12 +75,11 @@ const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/
             Create
           </button>
 
-          <a className=" col-1 btn btn-outline-dark" href={path}> Export</a>
+          <a className=" col-lg-1 btn btn-outline-dark" href={path}> Export</a>
            
           <a className="col-lg-1 col-sm-3 btn btn-outline-dark" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
 
-          {/* <TaskSearchById search={this.search} projectId={this.state.projectId}/> */}
-          <TaskSearchByTitle search={this.search} projectId={this.state.projectId}/>
+          <TaskSearch search={this.search} projectId={this.state.projectId}/>
 
         </div>
         <div className="container">

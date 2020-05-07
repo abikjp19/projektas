@@ -38,7 +38,7 @@ class AxiosMethods {
 }
 
 searchProjects(fragment) {
-    return axios.get(`http://localhost:8080/api/project/search`,
+    return axios.put(`http://localhost:8080/api/project/search`, fragment,
     {headers: {
       "Content-Type": "application/json"}
   })
