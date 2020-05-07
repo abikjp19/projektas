@@ -37,6 +37,15 @@ class AxiosMethods {
     })
 }
 
+searchProjects(fragment) {
+    return axios.put(`http://localhost:8080/api/project/search`, fragment,
+    {headers: {
+      "Content-Type": "application/json"}
+  })
+}
+
+
+
 // --------------tasks metdhods-----------------
 getAllTasks(projectId) {
     return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/`,
@@ -47,6 +56,13 @@ getAllTasks(projectId) {
 
 findByTaskId(projectId, taskId) {   
     return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/id/${taskId}`, 
+    {headers: {
+        "Content-Type": "application/json"}
+    })
+}
+
+findByTaskTitle(projectId, taskTitle) {   
+    return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/title/${taskTitle}`, 
     {headers: {
         "Content-Type": "application/json"}
     })
@@ -72,6 +88,12 @@ addTask(projectId, task) {
 })
 }
 
+searchTasks(projectId, fragment) {
+    return axios.put(`http://localhost:8080/api/project/id/${projectId}/task/search`, fragment,
+    {headers: {
+      "Content-Type": "application/json"}
+  })
+  }
 }
 
 export default new AxiosMethods();

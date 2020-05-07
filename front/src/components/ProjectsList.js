@@ -3,7 +3,7 @@ import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import ProjectSearch from './ProjectSearch';
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -45,24 +45,40 @@ class ProjectsList extends Component {
     console.log("tasks of project " + id);
     this.props.history.push(`/projects/id/${id}/tasks`);
   };
-finishedTasks = (unfinishedTasks, totalTasks) => {
-  return totalTasks - unfinishedTasks;
+
+  finishedTasks = (unfinishedTasks, totalTasks) => {
+    return totalTasks - unfinishedTasks;
+  }
+
+  search = (projects) => {
+    console.log(projects);
+    this.setState({projects});
 }
-  
+
   render() {
     console.log("render");
     return (
       <div className="container-fluid">
         <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
-          <h3 className="col-2 mt-2 ml-5">All Projects</h3>
+          <h3 className="col-3 mt-2 ml-5">All Projects</h3>
 
           <button
             className=" col-2 btn btn-outline-dark"
             onClick={this.addProjectClick}
             type="submit"
           >
-            Create New Project
+            Create
           </button>
+
+          <a className=" col-2 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
+
+          {/* <form className="form-inline col-lg-4 col-sm-4">
+            <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
+            <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit">Search</button>
+          </form> */}
+
+<ProjectSearch search={this.search} projectId={this.state.projects.projectId}/>
+
         </div>
 
         <div className="container">
@@ -90,7 +106,7 @@ finishedTasks = (unfinishedTasks, totalTasks) => {
                     {this.finishedTasks(proj.unfinishedTasks, proj.totalTasks)} / {proj.totalTasks}
                   </td>
 
-                  <td class="text-special text-right td-minimize">
+                  <td className="text-special text-right td-minimize">
                     {proj.finished ? "Done" : "New"}
                   </td>
                   <td className="text-right  td-minimize-action">
@@ -98,7 +114,7 @@ finishedTasks = (unfinishedTasks, totalTasks) => {
                       className="btn btn-danger buttonDel mr-2 btn-sm"
                       onClick={() => this.deleteProjectClick(proj.id)}
                     >
-                      <FaTrashAlt/>
+                      <FaTrashAlt />
                     </button>
                     <button
                       className="btn btn-success buttonEdit mr-2 btn-sm"

@@ -152,3 +152,36 @@ text-transform: lowercase;
   .td-minimize-action{
     width: 17%;
   }
+
+  .input-color{
+    /* background-color: #7c7c7c; */
+    background-color: #A66F5B;
+    /* background-color: #BFBFBF; */
+    border: black;
+  }
+  .input-color:focus{
+    /* background-color: #7c7c7c; */
+    background-color: #BFBFBF;
+    border: black;
+  }
+
+.bg-low{
+  background-color: lightgoldenrodyellow;
+  /* background-image: ; */
+}
+
+.bg-medium{
+  background-color: lightgreen;
+}
+
+.bg-high{
+  background-color: lightcoral;
+}
+
+.form-control::placeholder {
+  color:#292b2c;
+}
+
+.input-max-width{
+  width: 40px;
+}
