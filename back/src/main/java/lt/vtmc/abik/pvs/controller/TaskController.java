@@ -65,7 +65,7 @@ public class TaskController {
 		taskService.exportTasks(res, projectId);
 	}
 	
-	@GetMapping("search")
+	@PutMapping("search")
 	public List<Task> searchTasks(@PathVariable int projectId, @RequestBody String fragment){
 		return taskService.searchTasks(fragment, projectId);
 	}

@@ -14,7 +14,7 @@ class TaskSearchByTitle extends Component {
     }
     
     getResult = () =>{
-        AxiosMethods.findByTaskTitle(this.props.projectId, this.state.searchTask)
+        AxiosMethods.searchTasks(this.props.projectId, this.state.searchTask)
                 .then((res) => {
                     const data = res.data;
                     console.log(data);
