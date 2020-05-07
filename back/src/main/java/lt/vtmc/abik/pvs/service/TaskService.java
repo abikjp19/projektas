@@ -88,12 +88,15 @@ public class TaskService {
 	
 	public List<Task> searchTasks(String fragment, int projectId){
 		List<Task> results = new ArrayList<Task>();
-		int id = Integer.parseInt(fragment);
-		Task byId = this.findByTaskId(id);
-		if(byId != null)
-			results.add(byId);
+		try{
+			int id = Integer.parseInt(fragment);
+			Task byId = this.findByTaskId(id);
+			if(byId != null)
+				results.add(byId);
+		}
+		catch(NumberFormatException e) {}
 		for (Task task : this.getAll(projectId)) {
-			if(task.getTaskTitle().contains(fragment))
+			if(task.getTaskTitle().toLowerCase().contains(fragment.toLowerCase()))
 				results.add(task);
 		}
 		return results;
