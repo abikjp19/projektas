@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import '../App.css';
+import TaskSearchById from './TaskSearchById.js';
+import TaskSearchByTitle from './TaskSearchByTitle.js'
 
 
 class TasksList extends Component {
@@ -44,29 +47,10 @@ class TasksList extends Component {
     this.props.history.push(`/projects/id/${projectId}/tasks/id/-1`);
   };
 
-  handleChange = (e) =>{
-    console.log(e.target.value);
-    const val = e.target.value;
-    console.log(val);
-    var item = this.state.tasks.filter((data)=>{
-      if(data.id == val)
-          return data
-          // console.log(data)
-  })
- 
-   console.log(item);
-   this.setState({tasks: item});
-   
-  };
-
-   searchTaskById = (projectId, taskId) => {
-    AxiosMethods.findByTaskId(projectId, taskId)
-    .then((projectId) => {
-      this.refreshTasks(this.state.projectId)
-    })
-    .then(console.log("res"));
-   };
-  
+  search = (tasks) => {
+    console.log(tasks);
+    this.setState({tasks});
+}
 
   render() {
 
@@ -92,17 +76,8 @@ const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/
            
           <a className="col-lg-1 col-sm-3 btn btn-outline-dark" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
 
-          <form className="form-inline col-lg-4 col-sm-4">
-            <input 
-            className="form-control mr-sm-2 input-color border border-dark" type="text" 
-            value = {this.state.tasks.id}
-            // onChange={this.handleChange}
-            name="taskId"
-            />
-            <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit"
-           onClick={() => this.searchTaskById(this.state.projectId, this. state.tasks.id)}
-            >Search</button>
-          </form>
+          {/* <TaskSearchById search={this.search} projectId={this.state.projectId}/> */}
+          <TaskSearchByTitle search={this.search} projectId={this.state.projectId}/>
 
         </div>
         <div className="container">

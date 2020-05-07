@@ -178,3 +178,7 @@ text-transform: lowercase;
   background-color: lightcoral;
 }
 
+.form-control::placeholder {
+  color:#292b2c;
+}
+

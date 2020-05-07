@@ -52,6 +52,13 @@ findByTaskId(projectId, taskId) {
     })
 }
 
+findByTaskTitle(projectId, taskTitle) {   
+    return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/title/${taskTitle}`, 
+    {headers: {
+        "Content-Type": "application/json"}
+    })
+}
+
 
 deleteByTaskId(projectId, taskId){
    return axios.delete(`http://localhost:8080/api/project/id/${projectId}/task/id/${taskId}`, {headers: {
