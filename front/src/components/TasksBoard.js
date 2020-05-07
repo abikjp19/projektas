@@ -45,7 +45,7 @@ class TasksBoard extends Component {
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
                 this.refreshTasks(projectId);
-                this.refreshTasks(projectId);
+              
             })
     }
 
@@ -66,7 +66,7 @@ class TasksBoard extends Component {
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
                 this.refreshTasks(projectId);
-                this.refreshTasks(projectId);
+                
             })
     }
 
@@ -89,7 +89,7 @@ class TasksBoard extends Component {
                 console.log(updatedTask);
                 AxiosMethods.updateTask(updatedTask, projectId, taskId);
                 this.refreshTasks(projectId);
-                this.refreshTasks(projectId);
+                
             })
     }
 

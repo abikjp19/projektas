@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import AxiosMethods from "../service/AxiosMethods";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
+import '../App.css';
+import TaskSearchById from './TaskSearchById.js';
+import TaskSearchByTitle from './TaskSearchByTitle.js'
+
 
 class TasksList extends Component {
   constructor(props) {
@@ -18,7 +22,6 @@ class TasksList extends Component {
   componentDidMount() {
     this.refreshTasks(this.state.projectId);
   }
-
 
   refreshTasks = (projectId) => {
     AxiosMethods.getAllTasks(projectId).then((res) => {
@@ -44,8 +47,14 @@ class TasksList extends Component {
     this.props.history.push(`/projects/id/${projectId}/tasks/id/-1`);
   };
 
+  search = (tasks) => {
+    console.log(tasks);
+    this.setState({tasks});
+}
+
   render() {
-    console.log('render')
+
+const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/export/project${this.state.projectId}Tasks.csv`
 
     return (
 
@@ -56,19 +65,19 @@ class TasksList extends Component {
           <p className="col-lg-2 col-sm-3 mt-2 "><b>Project Id {this.state.projectId}</b></p>
 
           <button
-            className=" col-lg-2 col-sm-3 btn btn-outline-dark "
+            className=" col-lg-1 col-sm-3 btn btn-outline-dark "
             onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
             type="submit"
           >
-            Create New Task
+            Create
           </button>
 
-          <a className="col-lg-2 col-sm-3 btn btn-outline-dark " href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Tasks Board</a>
+          <a className=" col-1 btn btn-outline-dark" href={path}> Export</a>
+           
+          <a className="col-lg-1 col-sm-3 btn btn-outline-dark" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
 
-          <form className="form-inline col-lg-4 col-sm-4">
-            <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
-            <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit">Search</button>
-          </form>
+          {/* <TaskSearchById search={this.search} projectId={this.state.projectId}/> */}
+          <TaskSearchByTitle search={this.search} projectId={this.state.projectId}/>
 
         </div>
         <div className="container">

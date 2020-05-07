@@ -154,7 +154,14 @@ text-transform: lowercase;
   }
 
   .input-color{
-    background-color: secondary;
+    /* background-color: #7c7c7c; */
+    background-color: #A66F5B;
+    /* background-color: #BFBFBF; */
+    border: black;
+  }
+  .input-color:focus{
+    /* background-color: #7c7c7c; */
+    background-color: #BFBFBF;
     border: black;
   }
 
@@ -169,5 +176,9 @@ text-transform: lowercase;
 
 .bg-high{
   background-color: lightcoral;
+}
+
+.form-control::placeholder {
+  color:#292b2c;
 }
 
