@@ -69,4 +69,9 @@ public class ProjectController {
 	public void exportProjects(HttpServletResponse res) throws Exception{
 		projectService.exportProjects(res);
 	}
+	
+	@GetMapping("search")
+	public List<Project> searchProjects(@RequestBody String fragment){
+		return projectService.searchProjects(fragment);
+	}
 }

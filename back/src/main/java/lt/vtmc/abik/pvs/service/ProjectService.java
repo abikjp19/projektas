@@ -68,16 +68,23 @@ public class ProjectService {
 	}
 	
 	public void exportProjects(HttpServletResponse res) throws Exception{
-		//String filename = "projects.csv";
 		res.setContentType("text/csv");
-		//res.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename\"" + filename + "\"");
-		//res.setHeader("Content-Disposition", "attachment; file=projects.csv");
-//		StatefulBeanToCsv<Project> expProject = new StatefulBeanToCsvBuilder<Project>(res.getWriter())
-//				.withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).withSeparator(CSVWriter.DEFAULT_SEPARATOR)
-//				.withOrderedResults(false).build();
 		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
 		List<Project> projects = new ArrayList<Project>();
 		this.getAll().forEach(projects::add);
 		expProject.write(projects);
+	}
+	
+	public List<Project> searchProjects(String fragment) {
+		List<Project> results = new ArrayList<Project>();
+		int id = Integer.parseInt(fragment);
+		Project byId = this.findByProjectId(id);
+		if(byId != null)
+			results.add(byId);
+		for (Project project : this.getAll()) {
+			if(project.getProjectTitle().contains(fragment))
+				results.add(project);
+		}
+		return results;
 	}
 }
