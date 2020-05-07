@@ -85,4 +85,17 @@ public class TaskService {
 		this.getAll(projectId).forEach(tasks::add);
 		expTasks.write(tasks);
 	}
+	
+	public List<Task> searchTasks(String fragment, int projectId){
+		List<Task> results = new ArrayList<Task>();
+		int id = Integer.parseInt(fragment);
+		Task byId = this.findByTaskId(id);
+		if(byId != null)
+			results.add(byId);
+		for (Task task : this.getAll(projectId)) {
+			if(task.getTaskTitle().contains(fragment))
+				results.add(task);
+		}
+		return results;
+	}
 }

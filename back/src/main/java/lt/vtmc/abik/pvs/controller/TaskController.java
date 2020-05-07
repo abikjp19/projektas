@@ -64,4 +64,9 @@ public class TaskController {
 	public void exportTasks(@PathVariable int projectId, HttpServletResponse res) throws Exception {
 		taskService.exportTasks(res, projectId);
 	}
+	
+	@GetMapping("search")
+	public List<Task> searchTasks(@PathVariable int projectId, @RequestBody String fragment){
+		return taskService.searchTasks(fragment, projectId);
+	}
 }
