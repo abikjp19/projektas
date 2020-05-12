@@ -91,7 +91,7 @@ public class TaskService {
 		try{
 			int id = Integer.parseInt(fragment);
 			Task byId = this.findByTaskId(id);
-			if(byId != null)
+			if(byId != null && byId.getProject().getId() == projectId)
 				results.add(byId);
 		}
 		catch(NumberFormatException e) {}
