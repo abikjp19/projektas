@@ -118,7 +118,7 @@ class TasksBoard extends Component {
                         <div className="col-4">
                             <h5>Not Started</h5>
                             {notStarted.map((task) => (
-                                <div className={"card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
+                                <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
                                     style={{ width: "18rem" }} key={task.id}>
                                     <div className="card-body">
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
@@ -127,10 +127,10 @@ class TasksBoard extends Component {
                                         {/* <p className="card-text"><b>Move To:</b></p> */}
                                         <button
                                             onClick={() => this.changeToInProgress(this.state.projectId, task.id)}
-                                            className="btn btn-primary mr-2">In Progress</button>
+                                            className="btn btn-board-color mr-2">In Progress</button>
                                         <button
                                             onClick={() => this.changeToDone(this.state.projectId, task.id)}
-                                            className="btn btn-primary mr-2">Done</button>
+                                            className="btn btn-board-color mr-2">Done</button>
                                     </div>
                                 </div>
                             ))}
@@ -138,7 +138,7 @@ class TasksBoard extends Component {
                         <div className="col-4">
                             <h5>In Progress</h5>
                             {inProgress.map((task) => (
-                                <div className={"card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
+                                <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
                                     style={{ width: "18rem" }} key={task.id}>
                                     <div className="card-body">
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
@@ -146,12 +146,12 @@ class TasksBoard extends Component {
                                         <p className="card-text">{task.taskDescription}</p>
                                         {/* <p className="card-text"><b>Move To:</b></p> */}
                                         <button
-                                            className="btn btn-primary mr-2"
+                                            className="btn btn-board-color mr-2"
                                             onClick={() => this.changeToNotStarted(this.state.projectId, task.id)}
                                         >Not Started</button>
                                         <button
                                             onClick={() => this.changeToDone(this.state.projectId, task.id)}
-                                            className="btn btn-primary mr-2">Done</button>
+                                            className="btn btn-board-color mr-2">Done</button>
                                     </div>
                                 </div>
                             ))}
@@ -159,8 +159,8 @@ class TasksBoard extends Component {
                         <div className="col-4">
                             <h5>Done</h5>
                             {done.map((task) => (
-                                <div className={"card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
-                                    style={{ width: "18rem" }} key={task.id}>
+                                <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
+                                    style={{ width: "18rem"}} key={task.id}>
                                     <div className="card-body">
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
                                         {/* <h5 className="card-title">{task.taskTitle}</h5> */}
@@ -168,10 +168,10 @@ class TasksBoard extends Component {
                                         {/* <p className="card-text"><b>Move To:</b></p> */}
                                         <button
                                             onClick={() => this.changeToInProgress(this.state.projectId, task.id)}
-                                            className="btn btn-primary mr-2">In Progress</button>
+                                            className="btn btn-board-color mr-2">In Progress</button>
                                         <button
                                             onClick={() => this.changeToNotStarted(this.state.projectId, task.id)}
-                                            className="btn btn-primary">Not Started</button>
+                                            className="btn btn-board-color">Not Started</button>
                                     </div>
                                 </div>
                             ))}

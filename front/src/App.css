@@ -185,3 +185,8 @@ text-transform: lowercase;
 .input-max-width{
   width: 40px;
 }
+
+.btn-board-color{
+  background-color: #A66F5B;
+  color: white;
+}
