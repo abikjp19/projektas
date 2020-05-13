@@ -69,7 +69,7 @@ public class ProjectService {
 	
 	public void exportProjects(HttpServletResponse res) throws Exception{
 		res.setContentType("text/csv");
-		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
+		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withSeparator(';').withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
 		List<Project> projects = new ArrayList<Project>();
 		this.getAll().forEach(projects::add);
 		expProject.write(projects);
