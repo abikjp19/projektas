@@ -80,6 +80,7 @@ public class TaskService {
 	
 	public void exportTasks(HttpServletResponse res, int projectId) throws Exception {
 		res.setContentType("text/csv");
+		res.setCharacterEncoding("UTF-8");
 		StatefulBeanToCsv expTasks = new StatefulBeanToCsvBuilder(res.getWriter()).withSeparator(';').withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
 		List<Task> tasks = new ArrayList<Task>();
 		this.getAll(projectId).forEach(tasks::add);
