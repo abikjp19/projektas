@@ -5,8 +5,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.opencsv.CSVWriter;
@@ -24,6 +26,7 @@ import lt.vtmc.abik.pvs.repository.ProjectRepository;
 public class ProjectService {
 
 	ProjectRepository projectRepository;
+	private static final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 	
 	@Autowired
 	public ProjectService(ProjectRepository repo) {
@@ -32,25 +35,33 @@ public class ProjectService {
 	}
 	
 	public List<Project> findByProjectTitle(String projectTitle){
+		logger.info("Searching for project with title of '" + projectTitle + "'.");
 		return projectRepository.findByProjectTitle(projectTitle);
 	}
 	
 	public Project findByProjectId(int id) {
+		logger.info("Searching for project with id of '" + id + "'.");
 		return projectRepository.findByProjectId(id);
 	}
 	
+	public Iterable<Project> getAllPaged(Pageable pageable){
+		logger.info("Retrieved all projects.");
+		return projectRepository.findAll(pageable);
+	}
+	
 	public Iterable<Project> getAll(){
+		logger.info("Retrieved all projects.");
 		return projectRepository.findAll();
 	}
 	
 	public void add(Project project) {
+		logger.info("New project added.");
 		projectRepository.save(project);
-		System.out.println("Project added.");
 	}
 	
 	public void deleteByProjectId(int id) {
+		logger.info("Project with id '" + id + "' was deleted.");
 		projectRepository.deleteById(id);
-		System.out.println("Project with the id of '" + id + "' was removed.");
 	}
 	
 	public void deleteByProjectTitle(String projectTitle) {
@@ -59,6 +70,7 @@ public class ProjectService {
 	}
 	
 	public void updateProject(int id, Project newProject) {
+		logger.info("Project with id of '" + id + "' was updated.");
 		Project oldProject = this.findByProjectId(id);
 		oldProject.setProjectTitle(newProject.getProjectTitle());
 		oldProject.setProjectDescription(newProject.getProjectDescription());
@@ -69,13 +81,16 @@ public class ProjectService {
 	
 	public void exportProjects(HttpServletResponse res) throws Exception{
 		res.setContentType("text/csv");
-		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
+		res.setCharacterEncoding("UTF-8");
+		StatefulBeanToCsv expProject = new StatefulBeanToCsvBuilder(res.getWriter()).withSeparator(';').withQuotechar(CSVWriter.NO_QUOTE_CHARACTER).build();
 		List<Project> projects = new ArrayList<Project>();
 		this.getAll().forEach(projects::add);
 		expProject.write(projects);
+		logger.info("Exporting projects.");
 	}
 	
 	public List<Project> searchProjects(String fragment) {
+		logger.info("Searching for projects containing '" + fragment + "'.");
 		List<Project> results = new ArrayList<Project>();
 		try{
 			int id = Integer.parseInt(fragment);
