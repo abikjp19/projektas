@@ -4,7 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
 import ProjectSearch from './ProjectSearch';
-import Pagination from './Pagination';
+import Axios from 'axios';
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -12,18 +12,22 @@ class ProjectsList extends Component {
     this.state = {
       projects: [],
       message: null,
+      currentPage: 1,
+      prepage: 8
     };
   }
 
   componentDidMount() {
-    this.refreshProject();
+    this.refreshProject(this.state.currentPage);
   }
 
-  refreshProject = () => {
-    AxiosMethods.getAll().then((res) => {
-      console.log(res);
-      this.setState({ projects: res.data });
-    });
+  refreshProject = (currentPage) => {
+    currentPage -=1;
+    // AxiosMethods.getAll().then((res) => {
+    //   console.log(res);
+    //   this.setState({ projects: res.data });
+    // });
+    Axios.
   };
 
   deleteProjectClick = (id) => {
