@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
 import ProjectSearch from './ProjectSearch';
+import Pagination from './Pagination';
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -133,6 +134,7 @@ class ProjectsList extends Component {
               ))}
             </tbody>
           </table>
+          {/* <Pagination /> */}
         </div>
       </div>
     );

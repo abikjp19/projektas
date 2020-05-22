@@ -36,6 +36,7 @@
     transform: rotate(360deg);
   }
 } */
+
 .logo{
   height: 50px;
   width: 70px;
@@ -52,25 +53,14 @@
 }
 
 .btn-color{
-  /* geras */
+  
   background-color: #A66F5B;
-  /* background-color: #93AEBF; */
-  /* background-color: #01403A; */
-  /* background-color: #03A678; */
-  /* background-color: #038C65; */
-  /* irgi grazu */
-  /* background-color: #038C3E; */
-  /* background-color: #8c8c8c; */
   color: whitesmoke;
 
 }
 
 .slogan{
-  /* color: rgb(242, 121, 131); */
-  /* color: rgb(242, 148, 156); */
-  /* color:rgb(242, 172, 178); */
   color: rgb(217, 180, 183);
-  /* font-family: 'Lobster', cursive; */
   font-family: 'Permanent Marker', cursive;
   font-size: 27px;
 }
@@ -99,22 +89,20 @@ text-transform: lowercase;
    }
 
    .main-container {
-    /* will cover the 100% of viewport */
+    
     min-height: 100vh; 
     overflow: hidden;
     display: block;
     position: relative;
     background-color: #BFBFBF;
-    /* height of your footer */
+   
     padding-bottom: 100px; 
    }
 
    .footer {
     position: fixed;
     bottom: 0;
-    /* right: 0;
-    left:0; */
-    /* width: 100%; */
+    
     background-color: #592f25;
     color: whitesmoke;
     font-size: small;
@@ -128,7 +116,7 @@ text-transform: lowercase;
    
 
    h2, h5, h3{
-    /* font-family: 'Josefin Sans', cursive; */
+    
     font-family: 'Cinzel', serif;
    }
 
@@ -136,10 +124,6 @@ text-transform: lowercase;
      margin-bottom: -2px;
    }
   
-   /* td{
-     font-size: small;
-   } */
-
   .btn-margin{
     margin-right: 5%;
     max-width: 10rem;
@@ -154,20 +138,16 @@ text-transform: lowercase;
   }
 
   .input-color{
-    /* background-color: #7c7c7c; */
     background-color: #A66F5B;
-    /* background-color: #BFBFBF; */
     border: black;
   }
   .input-color:focus{
-    /* background-color: #7c7c7c; */
     background-color: #BFBFBF;
     border: black;
   }
 
 .bg-low{
   background-color: lightgoldenrodyellow;
-  /* background-image: ; */
 }
 
 .bg-medium{
