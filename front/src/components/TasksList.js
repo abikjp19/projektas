@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import '../App.css';
 import TaskSearch from './TaskSearch.js'
+import Axios from "axios";
 
 
 class TasksList extends Component {
@@ -13,20 +14,30 @@ class TasksList extends Component {
     this.state = {
       tasks: [],
       message: null,
-      projectId: this.props.match.params.id
+      projectId: this.props.match.params.id,
+      curentPage: 1,
+      prepage: 7
     };
     console.log(this.state.projectId)
   }
 
   componentDidMount() {
-    this.refreshTasks(this.state.projectId);
+    this.refreshTasks(this.state.projectId, this.state.curentPage);
   }
 
-  refreshTasks = (projectId) => {
-    AxiosMethods.getAllTasks(projectId).then((res) => {
-      console.log(res);
-      this.setState({ tasks: res.data });
-    });
+  refreshTasks = (projectId, curentPage) => {
+    curentPage = -1;
+    // AxiosMethods.getAllTasks(projectId).then((res) => {
+    //   console.log(res);
+    //   this.setState({ tasks: res.data });
+    // });
+    Axios.get("http://localhost:8080/api/project/id/"+projectId+"/task?page="+curentPage+"&size="+this.state.prepage)
+    .then(
+      res => {
+        this.setState({tasks: res.data})
+        console.log(res.data)
+      }
+    )
   };
 
   //  refreshTasks = () => {
@@ -53,6 +64,21 @@ class TasksList extends Component {
   search = (tasks) => {
     console.log(tasks);
     this.setState({tasks});
+}
+
+nextPage(){
+  this.state.currentPage +=1;
+  this.componentDidMount();
+}
+
+priviusPage(){
+  this.state.currentPage -=1;
+  this.componentDidMount();
+}
+
+pagePressed(value){
+  this.state.currentPage = value;
+  this.componentDidMount();
 }
 
   render() {
@@ -128,6 +154,27 @@ const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/
               ))}
             </tbody>
           </table>
+          <div >
+                <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item">
+      <button className="btn btn" onClick={() => this.priviusPage()}>&laquo;</button>
+      &nbsp;
+    </li>
+   
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
+    &nbsp;
+ 
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
+    &nbsp;
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
+    &nbsp;
+    <li className="page-item">
+    <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
+    </li>
+  </ul>
+</nav>
+                </div>
         </div>
       </div>
     );
