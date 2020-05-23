@@ -4,6 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
 import ProjectSearch from './ProjectSearch';
+import Axios from 'axios';
 
 class ProjectsList extends Component {
   constructor(props) {
@@ -11,18 +12,30 @@ class ProjectsList extends Component {
     this.state = {
       projects: [],
       message: null,
+      currentPage: 1,
+      prepage: 2
     };
   }
 
   componentDidMount() {
-    this.refreshProject();
+    this.refreshProject(this.state.currentPage);
   }
 
-  refreshProject = () => {
-    AxiosMethods.getAll().then((res) => {
-      console.log(res);
-      this.setState({ projects: res.data });
-    });
+  refreshProject = (currentPage) => {
+    currentPage -=1;
+    // AxiosMethods.getAll().then((res) => {
+    //   console.log(res);
+    //   this.setState({ projects: res.data });
+    // });
+
+    //Axios.get("http://localhost:8080/api/projects?page="+currentPage+"&size="+this.state.prepage)
+    Axios.get("http://localhost:8080/api/project/?page="+currentPage+"&size="+this.state.prepage)
+    .then(
+      res => {
+        this.setState({projects: res.data})
+        console.log(res.data)
+      }
+    )
   };
 
   deleteProjectClick = (id) => {
@@ -53,6 +66,21 @@ class ProjectsList extends Component {
   search = (projects) => {
     console.log(projects);
     this.setState({projects});
+}
+
+nextPage(){
+  this.state.currentPage +=1;
+  this.componentDidMount();
+}
+
+priviusPage(){
+  this.state.currentPage -=1;
+  this.componentDidMount();
+}
+
+pagePressed(value){
+  this.state.currentPage = value;
+  this.componentDidMount();
 }
 
   render() {
@@ -133,6 +161,25 @@ class ProjectsList extends Component {
               ))}
             </tbody>
           </table>
+          <div className="float-right" >
+                <nav aria-label="Page navigation example">
+  <ul className="pagination">
+    <li className="page-item">
+      <button className="btn btn" onClick={() => this.priviusPage()}>&laquo;</button>
+      &nbsp;
+    </li>
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
+    &nbsp;
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
+    &nbsp;
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
+    &nbsp;
+    <li className="page-item">
+    <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
+    </li>
+  </ul>
+</nav>
+                </div>
         </div>
       </div>
     );
