@@ -43,13 +43,16 @@
 }
 
 .bg-header-color{
-  background-color: #592f25;
-  color: whitesmoke;
+  background-color: gray;
+  /* background-color:#A66F5B; */
+  /* color: whitesmoke; */
+  color: black;
+  
   
 }
 
 .bg-nav-color{
-  background-color: #A66F5B;
+  background-color:#BFBFBF;
 }
 
 .btn-color{
@@ -94,7 +97,7 @@ text-transform: lowercase;
     overflow: hidden;
     display: block;
     position: relative;
-    background-color: #BFBFBF;
+    /* background-color: #BFBFBF; */
    
     padding-bottom: 100px; 
    }
@@ -103,8 +106,10 @@ text-transform: lowercase;
     position: fixed;
     bottom: 0;
     
-    background-color: #592f25;
-    color: whitesmoke;
+    background-color: gray;
+    /* background-color:#A66F5B; */
+    /* color: whitesmoke; */
+    color: black;
     font-size: small;
 
    }
@@ -138,7 +143,7 @@ text-transform: lowercase;
   }
 
   .input-color{
-    background-color: #A66F5B;
+    background-color: #BFBFBF;
     border: black;
   }
   .input-color:focus{
@@ -170,3 +175,7 @@ text-transform: lowercase;
   background-color: #A66F5B;
   color: white;
 }
+
+/* .form-pading{
+ margin-left:5;
+} */

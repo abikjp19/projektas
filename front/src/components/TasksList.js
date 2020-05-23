@@ -15,34 +15,28 @@ class TasksList extends Component {
       tasks: [],
       message: null,
       projectId: this.props.match.params.id,
-      curentPage: 1,
-      prepage: 7
+      totalTasks: 0,
+      thisPage: 1,
+      pageSize: 2,
     };
     console.log(this.state.projectId)
   }
 
   componentDidMount() {
-    this.refreshTasks(this.state.projectId, this.state.curentPage);
-  }
+    this.refreshTasks(this.state.projectId,this.state.thisPage);
+}
 
-  refreshTasks = (projectId, curentPage) => {
-    curentPage = -1;
-    // AxiosMethods.getAllTasks(projectId).then((res) => {
-    //   console.log(res);
-    //   this.setState({ tasks: res.data });
-    // });
-    Axios.get("http://localhost:8080/api/project/id/"+projectId+"/task?page="+curentPage+"&size="+this.state.prepage)
-    .then(
-      res => {
-        this.setState({tasks: res.data})
-        console.log(res.data)
-      }
-    )
-  };
-
-  //  refreshTasks = () => {
-  //       window.location.reload(false);
-  //     };
+refreshTasks=(projectId,thisPage)=> {
+  thisPage-=1;
+  Axios.get(
+      "http://localhost:8080/api/project/id/"+projectId+"/task?page="+thisPage+"&size="+this.state.pageSize)
+      .then(
+          res => {
+              this.setState({ tasks: res.data })
+          }
+      );  
+    AxiosMethods.getAllTasks(this.state.projectId).then(res => this.setState({totalTasks: res.data.length}))
+}
 
   deleteTaskClick = (projectId, taskId) => {
     AxiosMethods.deleteByTaskId(projectId, taskId)
@@ -67,49 +61,68 @@ class TasksList extends Component {
 }
 
 nextPage(){
-  this.state.currentPage +=1;
+  this.state.thisPage +=1;
   this.componentDidMount();
+  console.log("nextPage");
 }
 
-priviusPage(){
-  this.state.currentPage -=1;
+previousPage(){
+  this.state.thisPage -=1;
   this.componentDidMount();
+  console.log("prevPage");
 }
 
-pagePressed(value){
-  this.state.currentPage = value;
+pageClick(value){
+  this.state.thisPage = value;
   this.componentDidMount();
+  console.log("pressed");
 }
 
   render() {
+    const pagesCount = Math.ceil(this.state.totalTasks / this.state.pageSize) ;
 
-const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/export/project${this.state.projectId}Tasks.csv`
+    const pages = [];
+
+    for(var i=1; i<= pagesCount; i++){
+      pages.push(i);
+    }
+
+    console.log(pages)
+
+    // console.log(this.state.tasks.length);
+    // console.log(this.state.pageSize);
+    //console.log(this.state.thisPage);
+    const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/export/project${this.state.projectId}Tasks.csv`
 
     return (
 
       <div className="container-fluid">
-        <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
+        <div className="row d-flex flex-column flex-md-row align-items-center p-1 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
 
-          <h3 className="col-lg-1 col-sm-1 mt-2 ml-5">Tasks </h3>
-          <p className="col-lg-2 col-sm-3 mt-2 "><b>Project Id {this.state.projectId}</b></p>
-
+  
+         <h3 className="col-lg-3 col-sm-3 mt-2 ml-5">Tasks </h3>
+         
+          
+         
+          <TaskSearch search={this.search} projectId={this.state.projectId}/>
+         
           <button
-            className=" col-lg-1 col-sm-3 btn btn-outline-dark "
+            className=" col-lg-1 col-sm-3 btn btn-outline-dark mr-2"
             onClick={() => this.addTaskClick(this.state.projectId, this.state.tasks.id)}
             type="submit"
           >
             Create
           </button>
 
-          <a className=" col-lg-1 btn btn-outline-dark" href={path}> Export</a>
+          <a className=" col-lg-1 col-sm-3 btn btn-outline-dark mr-2" href={path}> Export</a>
            
-          <a className="col-lg-1 col-sm-3 btn btn-outline-dark" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
-
-          <TaskSearch search={this.search} projectId={this.state.projectId}/>
+          <a className="col-lg-1 col-sm-3 btn btn-outline-dark mr-2" href={'/projects/id/' + this.state.projectId + '/tasksboard'}>Board</a>
 
         </div>
         <div className="container">
-          <table className="table mb-0">
+        <p className="col-lg-2 col-sm-3 mt-2 "><b>Project Id {this.state.projectId}</b></p>
+        
+          <table className="table table-striped mb-0">
             <thead>
               <tr>
                 {/* <th>ProjectId</th>
@@ -157,18 +170,16 @@ const path = `http://localhost:8080/api/project/id/${this.state.projectId}/task/
           <div >
                 <nav aria-label="Page navigation example">
   <ul className="pagination">
-    <li className="page-item">
-      <button className="btn btn" onClick={() => this.priviusPage()}>&laquo;</button>
-      &nbsp;
-    </li>
-   
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
-    &nbsp;
- 
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
-    &nbsp;
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
-    &nbsp;
+  <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
+    {pages.map((p) => (
+<li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(p)}>{p}</button></li>))}
+
+    
+    
+    {/* <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(2)}>2</button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(3)}>3</button></li>
+    <li className="page-item"><button className="btn btn border" > ... </button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(pagesCount)}>{pagesCount} </button></li> */}
     <li className="page-item">
     <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
     </li>

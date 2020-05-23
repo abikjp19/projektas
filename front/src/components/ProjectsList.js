@@ -6,36 +6,34 @@ import { FaListAlt } from "react-icons/fa";
 import ProjectSearch from './ProjectSearch';
 import Axios from 'axios';
 
+
 class ProjectsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       projects: [],
       message: null,
-      currentPage: 1,
-      prepage: 10
+      totalProjects: 0,
+      thisPage: 1,
+      prepage: 2,
     };
   }
 
   componentDidMount() {
-    this.refreshProject(this.state.currentPage);
+    this.refreshProject(this.state.thisPage);
   }
 
-  refreshProject = (currentPage) => {
-    currentPage -=1;
-    // AxiosMethods.getAll().then((res) => {
-    //   console.log(res);
-    //   this.setState({ projects: res.data });
-    // });
-
-    //Axios.get("http://localhost:8080/api/projects?page="+currentPage+"&size="+this.state.prepage)
-    Axios.get("http://localhost:8080/api/project?page="+currentPage+"&size="+this.state.prepage)
+  refreshProject = (thisPage) => {
+    thisPage -=1;
+    Axios.get("http://localhost:8080/api/project?page="+thisPage+"&size="+this.state.prepage)
     .then(
       res => {
         this.setState({projects: res.data})
         console.log(res.data)
       }
     )
+    AxiosMethods.getAll().then(res => this.setState({totalProjects: res.data.length}))
+    
   };
 
   deleteProjectClick = (id) => {
@@ -69,48 +67,58 @@ class ProjectsList extends Component {
 }
 
 nextPage(){
-  this.state.currentPage +=1;
+  this.state.thisPage +=1;
   this.componentDidMount();
 }
 
-priviusPage(){
-  this.state.currentPage -=1;
+previousPage(){
+  this.state.thisPage -=1;
   this.componentDidMount();
 }
 
-pagePressed(value){
-  this.state.currentPage = value;
+pagePress(value){
+  this.state.thisPage = value;
   this.componentDidMount();
 }
 
+ 
   render() {
     console.log("render");
+    const pagesCount = Math.ceil(this.state.totalProjects / this.state.prepage) ;
+    // console.log(this.state.projects.length);
+    // console.log(this.state.prepage);
+    const pages = [];
+
+    for(var i=1; i<= pagesCount; i++){
+      pages.push(i);
+    }
     return (
       <div className="container-fluid">
-        <div className="row justify-content-between d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
-          <h3 className="col-3 mt-2 ml-5">All Projects</h3>
+        <div className="row d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
+          <h3 className="col-lg-3 mt-2 ml-5">All Projects</h3>
 
+          <ProjectSearch search={this.search} projectId={this.state.projects.projectId}/>
           <button
-            className=" col-2 btn btn-outline-dark"
+            className=" col-lg-2 btn btn-outline-dark mr-2"
             onClick={this.addProjectClick}
             type="submit"
           >
             Create
           </button>
 
-          <a className=" col-2 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
+          <a className=" col-lg-2 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
 
           {/* <form className="form-inline col-lg-4 col-sm-4">
             <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
             <button className="btn btn-outline-dark my-2 my-sm-0 " type="submit">Search</button>
           </form> */}
 
-<ProjectSearch search={this.search} projectId={this.state.projects.projectId}/>
+
 
         </div>
 
         <div className="container">
-          <table className="table">
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th>Id</th>
@@ -164,18 +172,14 @@ pagePressed(value){
           <div >
                 <nav aria-label="Page navigation example">
   <ul className="pagination">
-    <li className="page-item">
-      <button className="btn btn" onClick={() => this.priviusPage()}>&laquo;</button>
-      &nbsp;
-    </li>
-   
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
-    &nbsp;
- 
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
-    &nbsp;
-    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
-    &nbsp;
+    <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
+    {pages.map((p) => (
+<li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(p)}>{p}</button></li>))}
+    {/* <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(1)}> 1 </button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(2)}>2 </button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(3)}>3 </button></li>
+    <li className="page-item"><button className="btn btn border" > ... </button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(lastPage)}>{lastPage} </button></li> */}
     <li className="page-item">
     <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
     </li>

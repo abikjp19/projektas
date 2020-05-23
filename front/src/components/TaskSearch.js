@@ -46,7 +46,7 @@ class TaskSearch extends Component {
         render() {
             return (
                 <div>
-                    <form onSubmit={this.submitForm} className="form-inline ">
+                    <form onSubmit={this.submitForm} className="form-inline form-pading">
                 <input 
                 className="input-max-width"
                 name="searchTask"
@@ -59,9 +59,9 @@ class TaskSearch extends Component {
                 <button className="btn btn-outline-dark my-2 mr-2 my-sm-0 " type="submit"
                onClick={this.submitForm}
                 >Search</button>
-                <button className="btn btn-outline-dark my-2 my-sm-0 col-lg-2 col-sm-4" type="reset"
+                {/* <button className="btn btn-outline-dark my-2 my-sm-0 col-lg-2 col-sm-4" type="reset"
                onClick={() => this.refreshTasks(this.state.projectId)}
-                ><MdRefresh/></button>
+                ><MdRefresh/></button> */}
               </form>
                 </div>
             );
