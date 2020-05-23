@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.opencsv.CSVWriter;
@@ -49,6 +50,11 @@ public class TaskService {
 	public List<Task> getAll(int projectId){
 		logger.info("Retrieving all tasks of project with id of '" + projectId + "'");
 		return taskRepository.findAll().stream().filter(task -> task.getProject().getId() == projectId).collect(Collectors.toList());
+	}
+	
+	public List<Task> getAllPaged(int projectId, Pageable pageable){
+		logger.info("Retrieving all tasks of project with id of '" + projectId + "'");
+		return taskRepository.findAll(pageable).getContent().stream().filter(task -> task.getProject().getId() == projectId).collect(Collectors.toList());
 	}
 	
 	public void add(Task task, int projectId) {
