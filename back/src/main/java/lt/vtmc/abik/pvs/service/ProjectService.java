@@ -46,7 +46,7 @@ public class ProjectService {
 	
 	public Iterable<Project> getAllPaged(Pageable pageable){
 		logger.info("Retrieved all projects.");
-		return projectRepository.findAll(pageable);
+		return projectRepository.findAll(pageable).getContent();
 	}
 	
 	public Iterable<Project> getAll(){

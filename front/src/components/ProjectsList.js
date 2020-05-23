@@ -13,7 +13,7 @@ class ProjectsList extends Component {
       projects: [],
       message: null,
       currentPage: 1,
-      prepage: 8
+      prepage: 2
     };
   }
 
@@ -27,11 +27,13 @@ class ProjectsList extends Component {
     //   console.log(res);
     //   this.setState({ projects: res.data });
     // });
-    Axios.get("http://localcost:8080/api/project?page=" + currentPage + "&size=" + this.state.prepage)
+
+    //Axios.get("http://localhost:8080/api/projects?page="+currentPage+"&size="+this.state.prepage)
+    Axios.get("http://localhost:8080/api/project/?page="+currentPage+"&size="+this.state.prepage)
     .then(
       res => {
         this.setState({projects: res.data})
-        (console.log(res.data))
+        console.log(res.data)
       }
     )
   };
@@ -161,18 +163,18 @@ pagePressed(value){
           </table>
           <div className="float-right" >
                 <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
+  <ul className="pagination">
+    <li className="page-item">
       <button className="btn btn" onClick={() => this.priviusPage()}>&laquo;</button>
       &nbsp;
     </li>
-    <li class="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(1)}>1</button></li>
     &nbsp;
-    <li class="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(2)}>2</button></li>
     &nbsp;
-    <li class="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
+    <li className="page-item"><button className="btn btn" onClick={() => this.pagePressed(3)}>3</button></li>
     &nbsp;
-    <li class="page-item">
+    <li className="page-item">
     <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
     </li>
   </ul>
