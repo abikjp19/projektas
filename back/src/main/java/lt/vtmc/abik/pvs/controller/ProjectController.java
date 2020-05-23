@@ -24,19 +24,19 @@ import lt.vtmc.abik.pvs.service.ProjectService;
  */
 
 @RestController
-@RequestMapping("api/project/")
+@RequestMapping("api/project")
 @CrossOrigin(origins = "http://localhost:3000")
 public class ProjectController {
 
 	@Autowired
 	ProjectService projectService;
 	
-	@GetMapping("title/{title}")
+	@GetMapping("/title/{title}")
 	public List<Project> findByProjectTitle(@PathVariable String projectTitle){
 		return projectService.findByProjectTitle(projectTitle);
 	}
 	
-	@GetMapping("id/{id}")
+	@GetMapping("/id/{id}")
 	public Project findByProjectId(@PathVariable int id) {
 		return projectService.findByProjectId(id);
 	}
@@ -51,27 +51,27 @@ public class ProjectController {
 		projectService.add(project);
 	}
 	
-	@DeleteMapping("id/{id}")
+	@DeleteMapping("/id/{id}")
 	public void deleteByProjectId(@PathVariable int id) {
 		projectService.deleteByProjectId(id);
 	}
 	
-	@DeleteMapping("title/{title}")
+	@DeleteMapping("/title/{title}")
 	public void deleteByName(@PathVariable String projectTitle) {
 		projectService.deleteByProjectTitle(projectTitle);
 	}
 	
-	@PutMapping("id/{id}")
+	@PutMapping("/id/{id}")
 	  public void updateProject(@RequestBody Project newProject, @PathVariable int id) {
 		projectService.updateProject(id, newProject);
 	  }
 	
-	@GetMapping("export/projects.csv")
+	@GetMapping("/export/projects.csv")
 	public void exportProjects(HttpServletResponse res) throws Exception{
 		projectService.exportProjects(res);
 	}
 	
-	@PutMapping("search")
+	@PutMapping("/search")
 	public List<Project> searchProjects(@RequestBody String fragment){
 		return projectService.searchProjects(fragment);
 	}
