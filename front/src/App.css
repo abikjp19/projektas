@@ -151,17 +151,21 @@ text-transform: lowercase;
     border: black;
   }
 
-.bg-low{
-  background-color: lightgoldenrodyellow;
-}
-
-.bg-medium{
-  background-color: lightgreen;
-}
-
-.bg-high{
-  background-color: lightcoral;
-}
+  .bg-low{
+    border: 3px solid yellow;
+    border-radius: 10px;
+   }
+   ​ 
+  .bg-medium{
+    border: 3px solid green;
+    border-radius: 10px;
+   }
+   ​
+  .bg-high{
+    border: 3px solid red;
+    border-radius: 10px;
+   }
+   
 
 .form-control::placeholder {
   color:#292b2c;
