@@ -22,7 +22,7 @@ class TasksList extends Component {
       projectId: this.props.match.params.id,
       totalTasks: 0,
       thisPage: 1,
-      prepage: 6,
+      prepage: 5,
     };
   }
 
@@ -70,7 +70,13 @@ nextPage(){
   console.log(pagesCount)
   if(this.state.thisPage !== pagesCount && pagesCount !== 0){
   this.state.thisPage +=1;
-  this.componentDidMount();
+  Axios.get(
+    "http://localhost:8080/api/project/id/"+this.state.projectId+"/task?page="+(this.state.thisPage-1)+"&size="+this.state.prepage)
+    .then(
+        res => {
+            this.setState({ tasks: res.data })
+        }
+    );  
   }
 }
 
