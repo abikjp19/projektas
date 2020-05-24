@@ -26,6 +26,9 @@ public class BackApplication {
 	@Bean
 	public CommandLineRunner example(ProjectRepository repo, TaskRepository repo2) {
 		return (args) -> {
+			repo.deleteAll();
+			addThousandProjects(repo);
+			if(repo.count() == 0 && repo2.count() == 0) {
 			Project proj1 = new Project("Karūna", "Juodasis šokoladas su migdolais"); 
 			Project proj2 = new Project("Princas", "Pieniškas šokoladas su tiramisu įdaru");
 			Project proj3 = new Project("Karštas šokoladas", "Toks skanus kaip operos ir baleto teatre");
@@ -55,6 +58,12 @@ public class BackApplication {
 			repo2.save(task5);
 			repo2.save(task6);
 			repo2.save(task7);
+			}
 		};
+	}
+	
+	private void addThousandProjects(ProjectRepository repo) {
+		for(int i = 0; i < 40; i++)
+			repo.save(new Project("project" + i, "description" + i));
 	}
 }

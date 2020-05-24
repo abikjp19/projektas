@@ -54,6 +54,10 @@ public class ProjectService {
 		return projectRepository.findAll();
 	}
 	
+	public long countProjects() {
+		return projectRepository.count();
+	}
+	
 	public void add(Project project) {
 		logger.info("New project added.");
 		projectRepository.save(project);

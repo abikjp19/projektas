@@ -57,6 +57,10 @@ public class TaskService {
 		return taskRepository.findAll(pageable).getContent().stream().filter(task -> task.getProject().getId() == projectId).collect(Collectors.toList());
 	}
 	
+	public long countProjectTasks(int projectId) {
+		return taskRepository.findAll().stream().filter(task -> task.getProject().getId() == projectId).count();
+	}
+	
 	public void add(Task task, int projectId) {
 		projectRepository.findByProjectId(projectId).addTask(task);
 		taskRepository.save(task);

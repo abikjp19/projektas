@@ -50,6 +50,11 @@ public class TaskController {
 		return taskService.getAllPaged(projectId, pageable);
 	}
 	
+	@GetMapping("/count")
+	public long countProjectTasks(@PathVariable int projectId) {
+		return taskService.countProjectTasks(projectId);
+	}
+	
 	@PostMapping
 	public void addTask(@RequestBody Task task, @PathVariable int projectId) {
 		taskService.add(task, projectId);
