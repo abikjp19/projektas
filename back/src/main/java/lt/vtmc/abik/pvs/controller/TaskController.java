@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lt.vtmc.abik.pvs.BackApplication;
 import lt.vtmc.abik.pvs.model.Task;
 import lt.vtmc.abik.pvs.service.TaskService;
 
@@ -48,6 +44,11 @@ public class TaskController {
 	@GetMapping
 	public Iterable<Task> getAllTasks(@PathVariable int projectId, Pageable pageable){
 		return taskService.getAllPaged(projectId, pageable);
+	}
+	
+	@GetMapping("/count")
+	public long countProjectTasks(@PathVariable int projectId) {
+		return taskService.countProjectTasks(projectId);
 	}
 	
 	@PostMapping
