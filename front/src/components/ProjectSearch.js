@@ -48,10 +48,10 @@ class ProjectSearch extends Component {
                 <div>
                     <form onSubmit={this.submitForm} className="form-inline ">
                 <input 
-                className="input-max-width"
+                className="input-max-width col-lg-6 col-sm-4"
                 name="searchProject"
                 type="search"
-                className="form-control mr-sm-2 input-color border border-dark col-lg-6 col-sm-4" 
+                className="form-control mr-sm-2 input-color border border-dark " 
                 // placeholder="Searh Project"
                 onChange={this.inputChange}
                 aria-label="Search"
@@ -59,9 +59,9 @@ class ProjectSearch extends Component {
                 <button className="btn btn-outline-dark my-2 mr-2 my-sm-0 " type="submit"
               onClick={this.submitForm}
                 >Search</button>
-                <button className="btn btn-outline-dark my-2 my-sm-0 col-lg-2 col-sm-4" type="reset"
+                {/* <button className="btn btn-outline-dark my-2 my-sm-0 col-lg-2 col-sm-4" type="reset"
                onClick={() => this.refreshProject()}
-                ><MdRefresh/></button>
+                ><MdRefresh/></button> */}
               </form>
                 </div>
             );
