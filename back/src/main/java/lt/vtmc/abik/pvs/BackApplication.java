@@ -59,4 +59,9 @@ public class BackApplication {
 			}
 		};
 	}
+	
+	private void addThousandProjects(ProjectRepository repo) {
+		for(int i = 0; i < 1000; i++)
+			repo.save(new Project("project" + i, "description" + i));
+	}
 }

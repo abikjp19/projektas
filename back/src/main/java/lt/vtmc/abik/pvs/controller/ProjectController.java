@@ -46,6 +46,11 @@ public class ProjectController {
 		return projectService.getAllPaged(pageable);
 	}
 	
+	@GetMapping("/count")
+	public long countProjects() {
+		return projectService.countProjects();
+	}
+	
 	@PostMapping
 	public void add(@RequestBody Project project) {
 		projectService.add(project);
