@@ -43,18 +43,21 @@
 }
 
 .bg-header-color{
-  background-color: #592f25;
-  color: whitesmoke;
+  background-color: gray;
+  /* background-color:#A66F5B; */
+  /* color: whitesmoke; */
+  color: black;
+  
   
 }
 
 .bg-nav-color{
-  background-color: #A66F5B;
+  background-color:#BFBFBF;
 }
 
 .btn-color{
   
-  background-color: #A66F5B;
+  background-color: gray;
   color: whitesmoke;
 
 }
@@ -94,7 +97,7 @@ text-transform: lowercase;
     overflow: hidden;
     display: block;
     position: relative;
-    background-color: #BFBFBF;
+    /* background-color: #BFBFBF; */
    
     padding-bottom: 100px; 
    }
@@ -103,8 +106,10 @@ text-transform: lowercase;
     position: fixed;
     bottom: 0;
     
-    background-color: #592f25;
-    color: whitesmoke;
+    background-color: gray;
+    /* background-color:#A66F5B; */
+    /* color: whitesmoke; */
+    color: black;
     font-size: small;
 
    }
@@ -138,7 +143,7 @@ text-transform: lowercase;
   }
 
   .input-color{
-    background-color: #A66F5B;
+    background-color: #BFBFBF;
     border: black;
   }
   .input-color:focus{
@@ -147,15 +152,18 @@ text-transform: lowercase;
   }
 
 .bg-low{
-  background-color: lightgoldenrodyellow;
+ border: 3px solid yellow;
+ border-radius: 10px;
 }
 
 .bg-medium{
-  background-color: lightgreen;
+  border: 3px solid green;
+  border-radius: 10px;
 }
 
 .bg-high{
-  background-color: lightcoral;
+  border: 3px solid red;
+  border-radius: 10px;
 }
 
 .form-control::placeholder {
@@ -167,6 +175,10 @@ text-transform: lowercase;
 }
 
 .btn-board-color{
-  background-color: #A66F5B;
+  background-color: gray;
   color: white;
 }
+
+/* .form-pading{
+ margin-left:5;
+} */
