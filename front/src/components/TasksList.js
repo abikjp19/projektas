@@ -17,7 +17,7 @@ class TasksList extends Component {
       projectId: this.props.match.params.id,
       totalTasks: 0,
       thisPage: 1,
-      pageSize: 2,
+      pageSize: 3,
     };
     console.log(this.state.projectId)
   }
@@ -173,9 +173,6 @@ pageClick(value){
   <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
     {pages.map((p) => (
 <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(p)}>{p}</button></li>))}
-
-    
-    
     {/* <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(2)}>2</button></li>
     <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(3)}>3</button></li>
     <li className="page-item"><button className="btn btn border" > ... </button></li>
