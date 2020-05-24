@@ -9,8 +9,6 @@ import org.springframework.context.annotation.Bean;
 
 import lt.vtmc.abik.pvs.model.Project;
 import lt.vtmc.abik.pvs.model.Task;
-import lt.vtmc.abik.pvs.model.TaskPriority;
-import lt.vtmc.abik.pvs.model.TaskStatus;
 import lt.vtmc.abik.pvs.repository.ProjectRepository;
 import lt.vtmc.abik.pvs.repository.TaskRepository;
 
