@@ -5,6 +5,11 @@ import { FaEdit } from "react-icons/fa";
 import '../App.css';
 import TaskSearch from './TaskSearch.js'
 import Axios from "axios";
+import {FaAngleDoubleLeft} from "react-icons/fa"
+import {FaAngleLeft} from "react-icons/fa"
+import {FaAngleDoubleRight} from "react-icons/fa"
+import {FaAngleRight} from "react-icons/fa"
+
 
 
 class TasksList extends Component {
@@ -17,7 +22,7 @@ class TasksList extends Component {
       projectId: this.props.match.params.id,
       totalTasks: 0,
       thisPage: 1,
-      pageSize: 3,
+      pageSize: 2,
     };
     console.log(this.state.projectId)
   }
@@ -170,16 +175,11 @@ pageClick(value){
           <div >
                 <nav aria-label="Page navigation example">
   <ul className="pagination">
-  <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
-    {pages.map((p) => (
-<li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(p)}>{p}</button></li>))}
-    {/* <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(2)}>2</button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(3)}>3</button></li>
-    <li className="page-item"><button className="btn btn border" > ... </button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pageClick(pagesCount)}>{pagesCount} </button></li> */}
-    <li className="page-item">
-    <button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button>
-    </li>
+  <li className="page-item"><button className="btn" onClick={() => this.pagePress(1)}><FaAngleDoubleLeft/></button></li>
+  <li className="page-item"><button className="btn" onClick={() => this.previousPage()}><FaAngleLeft/></button></li>
+  <li className="page-item"><button className="btn border" > {this.state.thisPage} </button></li>
+  <li className="page-item"><button className="btn" onClick={() => this.nextPage()}><FaAngleRight/></button> </li>
+  <li className="page-item"><button className="btn" onClick={() => this.pagePress(pagesCount)}><FaAngleDoubleRight/></button></li>
   </ul>
 </nav>
                 </div>

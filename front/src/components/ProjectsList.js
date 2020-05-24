@@ -5,6 +5,12 @@ import { FaEdit } from "react-icons/fa";
 import { FaListAlt } from "react-icons/fa";
 import ProjectSearch from './ProjectSearch';
 import Axios from 'axios';
+import {FaAngleDoubleLeft} from "react-icons/fa"
+import {FaAngleLeft} from "react-icons/fa"
+import {FaAngleDoubleRight} from "react-icons/fa"
+import {FaAngleRight} from "react-icons/fa"
+
+
 
 
 class ProjectsList extends Component {
@@ -32,7 +38,7 @@ class ProjectsList extends Component {
         console.log(res.data)
       }
     )
-    AxiosMethods.getAll().then(res => this.setState({totalProjects: res.data.length}))
+    AxiosMethods.getProjectsCount().then(res => this.setState({totalProjects: res.data}))
   };
 
   deleteProjectClick = (id) => {
@@ -66,13 +72,18 @@ class ProjectsList extends Component {
 }
 
 nextPage(){
+  const pagesCount = Math.ceil(this.state.totalProjects / this.state.prepage) ;
+  if(this.state.thisPage !== pagesCount){
   this.state.thisPage +=1;
   this.componentDidMount();
+  }
 }
 
 previousPage(){
+  if(this.state.thisPage > 1){
   this.state.thisPage -=1;
   this.componentDidMount();
+  }
 }
 
 pagePress(value){
@@ -80,27 +91,32 @@ pagePress(value){
   this.componentDidMount();
 }
 
+ 
   render() {
+    console.log("render");
     const pagesCount = Math.ceil(this.state.totalProjects / this.state.prepage) ;
+    //  console.log(this.state.projects.length);
+    //  console.log(this.state.prepage);
     const pages = [];
+
     for(var i=1; i<= pagesCount; i++){
       pages.push(i);
     }
     return (
       <div className="container-fluid">
         <div className="row d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-nav-color border-bottom shadow-sm header">
-          <h3 className="col-lg-4 mt-2 ml-5">All Projects</h3>
+          <h3 className="col-lg-3 mt-2 ml-5">All Projects</h3>
 
           <ProjectSearch search={this.search} projectId={this.state.projects.projectId}/>
           <button
-            className=" col-lg-1 btn btn-outline-dark mr-2"
+            className=" col-lg-2 btn btn-outline-dark mr-2"
             onClick={this.addProjectClick}
             type="submit"
           >
             Create
           </button>
 
-          <a className=" col-lg-1 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
+          <a className=" col-lg-2 btn btn-outline-dark" href="http://localhost:8080/api/project/export/projects.csv"> Export</a>
 
           {/* <form className="form-inline col-lg-4 col-sm-4">
             <input className="form-control mr-sm-2 input-color border border-dark" type="search" />
@@ -166,15 +182,23 @@ pagePress(value){
           <div >
                 <nav aria-label="Page navigation example">
   <ul className="pagination">
-    <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
+
+  <li className="page-item"><button className="btn" onClick={() => this.pagePress(1)}><FaAngleDoubleLeft/></button></li>
+  <li className="page-item"><button className="btn" onClick={() => this.previousPage()}><FaAngleLeft/></button></li>
+  <li className="page-item"><button className="btn border" > {this.state.thisPage} </button></li>
+  <li className="page-item"><button className="btn" onClick={() => this.nextPage()}><FaAngleRight/></button> </li>
+  <li className="page-item"><button className="btn" onClick={() => this.pagePress(pagesCount)}><FaAngleDoubleRight/></button></li>
+
+    
+    {/* <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
     {pages.map((p) => (
 <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(p)}>{p}</button></li>))}
-    {/* <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(1)}> 1 </button></li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(1)}> 1 </button></li>
     <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(2)}>2 </button></li>
     <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(3)}>3 </button></li>
     <li className="page-item"><button className="btn btn border" > ... </button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(lastPage)}>{lastPage} </button></li> */}
-    <li className="page-item"><button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button> </li>
+    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(lastPage)}>{lastPage} </button></li>
+    <li className="page-item"><button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button> </li> */}
   </ul>
 </nav>
                 </div>

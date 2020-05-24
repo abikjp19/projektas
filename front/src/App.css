@@ -57,7 +57,7 @@
 
 .btn-color{
   
-  background-color: gray;
+  background-color: #A66F5B;
   color: whitesmoke;
 
 }
@@ -152,18 +152,15 @@ text-transform: lowercase;
   }
 
 .bg-low{
- border: 3px solid yellow;
- border-radius: 10px;
+  background-color: lightgoldenrodyellow;
 }
 
 .bg-medium{
-  border: 3px solid green;
-  border-radius: 10px;
+  background-color: lightgreen;
 }
 
 .bg-high{
-  border: 3px solid red;
-  border-radius: 10px;
+  background-color: lightcoral;
 }
 
 .form-control::placeholder {
@@ -175,7 +172,7 @@ text-transform: lowercase;
 }
 
 .btn-board-color{
-  background-color: gray;
+  background-color: #A66F5B;
   color: white;
 }
 

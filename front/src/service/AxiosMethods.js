@@ -10,6 +10,13 @@ class AxiosMethods {
         })
    }
 
+   getProjectsCount(){
+    return axios.get(`http://localhost:8080/api/project/count`,
+        {headers: {
+            "Content-Type": "application/json"}
+        })
+   }
+
     findById(id) {   
         return axios.get(`http://localhost:8080/api/project/id/${id}`, 
         {headers: {
@@ -49,6 +56,13 @@ searchProjects(fragment) {
 // --------------tasks metdhods-----------------
 getAllTasks(projectId) {
     return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/`,
+    {headers: {
+        "Content-Type": "application/json"}
+    })
+}
+
+getTasksCount(projectId){
+    return axios.get(`http://localhost:8080/api/project/id/${projectId}/task/count`,
     {headers: {
         "Content-Type": "application/json"}
     })
