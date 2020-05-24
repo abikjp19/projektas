@@ -73,7 +73,7 @@ class ProjectsList extends Component {
 
 nextPage(){
   const pagesCount = Math.ceil(this.state.totalProjects / this.state.prepage) ;
-  if(this.state.thisPage !== pagesCount){
+  if(this.state.thisPage !== pagesCount && pagesCount !== 0){
   this.state.thisPage +=1;
   this.componentDidMount();
   }
@@ -182,23 +182,11 @@ pagePress(value){
           <div >
                 <nav aria-label="Page navigation example">
   <ul className="pagination">
-
   <li className="page-item"><button className="btn" onClick={() => this.pagePress(1)}><FaAngleDoubleLeft/></button></li>
   <li className="page-item"><button className="btn" onClick={() => this.previousPage()}><FaAngleLeft/></button></li>
   <li className="page-item"><button className="btn border" > {this.state.thisPage} </button></li>
   <li className="page-item"><button className="btn" onClick={() => this.nextPage()}><FaAngleRight/></button> </li>
   <li className="page-item"><button className="btn" onClick={() => this.pagePress(pagesCount)}><FaAngleDoubleRight/></button></li>
-
-    
-    {/* <li className="page-item"><button className="btn btn" onClick={() => this.previousPage()}>&laquo;</button></li>
-    {pages.map((p) => (
-<li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(p)}>{p}</button></li>))}
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(1)}> 1 </button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(2)}>2 </button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(3)}>3 </button></li>
-    <li className="page-item"><button className="btn btn border" > ... </button></li>
-    <li className="page-item"><button className="btn btn border" onClick={() => this.pagePress(lastPage)}>{lastPage} </button></li>
-    <li className="page-item"><button className="btn btn" onClick={() => this.nextPage()}>&raquo;</button> </li> */}
   </ul>
 </nav>
                 </div>
