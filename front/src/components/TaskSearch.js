@@ -3,6 +3,7 @@ import AxiosMethods from '../service/AxiosMethods.js';
 import Axios from 'axios';
 import {MdRefresh} from 'react-icons/md';
 import '../App.css'
+import {FaSearch} from "react-icons/fa"
 
 class TaskSearch extends Component {
     constructor(props){

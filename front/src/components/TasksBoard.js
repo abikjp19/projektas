@@ -122,6 +122,7 @@ class TasksBoard extends Component {
                                 <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
                                     style={{ width: "18rem" }} key={task.id}>
                                     <div className="card-body">
+                            <p>Priority: <i className="priorityCapitalize">{task.taskPriority.toLowerCase()}</i></p>
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
                                         {/* <h5 className="card-title">{task.taskTitle}</h5> */}
                                         <p className="card-text">{task.taskDescription}</p>
@@ -142,6 +143,7 @@ class TasksBoard extends Component {
                                 <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
                                     style={{ width: "18rem" }} key={task.id}>
                                     <div className="card-body">
+                                    <p>Priority: <i className="priorityCapitalize">{task.taskPriority.toLowerCase()}</i></p>
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
                                         {/* <h5 className="card-title">{task.taskTitle}</h5> */}
                                         <p className="card-text">{task.taskDescription}</p>
@@ -163,6 +165,7 @@ class TasksBoard extends Component {
                                 <div className={"mt-2 card" + (task.taskPriority == "LOW" ? " bg-low" : task.taskPriority == "MEDIUM" ? " bg-medium" : " bg-high")}
                                     style={{ width: "18rem"}} key={task.id}>
                                     <div className="card-body">
+                                    <p>Priority: <i className="priorityCapitalize">{task.taskPriority.toLowerCase()}</i></p>
                                         <p className="card-title"><b>{task.taskTitle}</b></p>
                                         {/* <h5 className="card-title">{task.taskTitle}</h5> */}
                                         <p className="card-text">{task.taskDescription}</p>
