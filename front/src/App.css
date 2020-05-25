@@ -151,7 +151,7 @@ text-transform: lowercase;
     border: black;
   }
 
-  .bg-low{
+  /* .bg-low{
     border: 3px solid yellow;
     border-radius: 10px;
    }
@@ -164,7 +164,7 @@ text-transform: lowercase;
   .bg-high{
     border: 3px solid red;
     border-radius: 10px;
-   }
+   } */
    
 
 .form-control::placeholder {
@@ -176,7 +176,7 @@ text-transform: lowercase;
 }
 
 .btn-board-color{
-  background-color: #A66F5B;
+  background-color: gray;
   color: white;
 }
 

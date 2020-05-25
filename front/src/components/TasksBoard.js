@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AxiosMethods from "../service/AxiosMethods.js";
-import BoardCard from './BoardCard.js'
+import BoardCard from './BoardCard.js';
+import '../App.css'
 
 class TasksBoard extends Component {
 
